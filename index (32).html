@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crystal Shop — Écailleuse électrique professionnelle</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ===================== RESET & BASE ===================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;background:#F8F9FC;color:#0A1628;overflow-x:hidden;cursor:none}
+
+/* ===================== CUSTOM CURSOR ===================== */
+.cursor{position:fixed;width:12px;height:12px;background:#FF6B00;border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:transform .15s,width .2s,height .2s,background .2s}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(255,107,0,.5);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:transform .1s,width .2s,height .2s,opacity .2s}
+.cursor.active{width:20px;height:20px;background:rgba(255,107,0,.5)}
+.cursor-ring.active{width:50px;height:50px;opacity:.3}
+
+/* ===================== PROMO BAR ===================== */
+.promo-bar{background:#0A1628;color:#fff;padding:10px 0;overflow:hidden;position:relative;z-index:100}
+.promo-track{display:flex;white-space:nowrap;animation:marquee 28s linear infinite}
+.promo-track span{display:inline-flex;align-items:center;gap:32px;padding-right:80px;font-size:13px;font-weight:500;letter-spacing:.03em}
+.promo-dot{width:4px;height:4px;background:#FF6B00;border-radius:50%;display:inline-block}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ===================== HEADER ===================== */
+header{position:sticky;top:0;z-index:500;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid #E8ECF4;transition:box-shadow .3s}
+header.scrolled{box-shadow:0 4px 24px rgba(10,22,40,.08)}
+.header-inner{max-width:1320px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.logo-mark{width:36px;height:36px;background:linear-gradient(135deg,#0A1628,#1a3a6b);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:20px;height:20px;fill:none;stroke:#FF6B00;stroke-width:2}
+.logo-text{font-size:18px;font-weight:800;color:#0A1628;letter-spacing:-.02em}
+.logo-text span{color:#FF6B00}
+nav{display:flex;align-items:center;gap:4px}
+nav a{font-size:14px;font-weight:500;color:#0A1628;text-decoration:none;padding:8px 14px;border-radius:8px;transition:background .2s,color .2s}
+nav a:hover{background:#F0F4FF;color:#FF6B00}
+.header-actions{display:flex;align-items:center;gap:8px}
+.header-btn{width:40px;height:40px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:background .2s;color:#0A1628;position:relative}
+.header-btn:hover{background:#F0F4FF}
+.cart-badge{position:absolute;top:6px;right:6px;width:16px;height:16px;background:#FF6B00;border-radius:50%;font-size:10px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;line-height:1}
+.header-cta{background:#FF6B00;color:#fff;border:none;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s,transform .15s;white-space:nowrap}
+.header-cta:hover{background:#e05e00;transform:translateY(-1px)}
+
+/* ===================== HERO ===================== */
+.hero{position:relative;height:90vh;min-height:600px;display:flex;align-items:center;overflow:hidden;background:#0A1628}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover;opacity:.45}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(10,22,40,.85) 40%,rgba(10,22,40,.2) 100%);z-index:1}
+.hero-content{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:0 24px;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,0,.15);border:1px solid rgba(255,107,0,.3);color:#FF6B00;font-size:12px;font-weight:600;padding:6px 14px;border-radius:50px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(44px,6vw,80px);font-weight:800;color:#fff;line-height:1.08;letter-spacing:-.02em;margin-bottom:20px;max-width:700px}
+.hero h1 em{font-style:italic;color:#FF6B00}
+.hero p{font-size:18px;color:rgba(255,255,255,.75);line-height:1.65;max-width:500px;margin-bottom:36px;font-weight:400}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn-primary{background:#FF6B00;color:#fff;border:none;padding:16px 32px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:#e05e00;transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,107,0,.35)}
+.btn-secondary{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);padding:16px 32px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;transition:all .25s;backdrop-filter:blur(8px)}
+.btn-secondary:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:40px;margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,.1)}
+.hero-stat strong{display:block;font-size:32px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.hero-stat span{font-size:13px;color:rgba(255,255,255,.55);font-weight:500}
+
+/* ===================== MARQUEE REASSURANCE ===================== */
+.reassurance{background:#fff;border-top:1px solid #E8ECF4;border-bottom:1px solid #E8ECF4;padding:16px 0;overflow:hidden}
+.reassurance-track{display:flex;animation:marquee 30s linear infinite;white-space:nowrap}
+.reassurance-item{display:inline-flex;align-items:center;gap:10px;padding:0 48px;font-size:14px;font-weight:500;color:#0A1628;flex-shrink:0}
+.reassurance-item svg{width:18px;height:18px;stroke:#FF6B00;fill:none;stroke-width:2;flex-shrink:0}
+
+/* ===================== SECTION TITLES ===================== */
+.section{padding:96px 24px;max-width:1320px;margin:0 auto}
+.section-eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#FF6B00;margin-bottom:12px}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);font-weight:800;color:#0A1628;letter-spacing:-.02em;line-height:1.12;margin-bottom:16px}
+.section-sub{font-size:17px;color:#5a6a82;line-height:1.65;max-width:560px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;gap:24px;flex-wrap:wrap}
+
+/* ===================== PRODUCTS GRID ===================== */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+.product-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #E8ECF4;transition:transform .3s,box-shadow .3s;cursor:pointer;position:relative}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(10,22,40,.12)}
+.product-card:hover .card-quick-add{opacity:1;transform:translateY(0)}
+.product-card:hover .card-img img{transform:scale(1.06)}
+.card-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:#F0F4FF}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card-badge{position:absolute;top:12px;left:12px;background:#FF6B00;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:50px;letter-spacing:.04em;text-transform:uppercase;z-index:2}
+.card-badge.bestseller{background:#0A1628}
+.card-quick-add{position:absolute;bottom:12px;left:12px;right:12px;background:#0A1628;color:#fff;border:none;padding:12px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;z-index:2;letter-spacing:.02em}
+.card-quick-add:hover{background:#FF6B00}
+.card-body{padding:20px}
+.card-cat{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#8a9ab5;margin-bottom:8px}
+.card-title{font-size:16px;font-weight:700;color:#0A1628;margin-bottom:8px;line-height:1.3}
+.card-stars{display:flex;align-items:center;gap:6px;margin-bottom:12px}
+.stars svg{width:14px;height:14px;fill:#FF6B00;stroke:none}
+.card-stars span{font-size:12px;color:#8a9ab5;font-weight:500}
+.card-price{display:flex;align-items:baseline;gap:8px}
+.price-current{font-size:20px;font-weight:800;color:#0A1628}
+.price-old{font-size:14px;color:#b0bac8;text-decoration:line-through;font-weight:500}
+.price-save{font-size:12px;background:#FFF3EC;color:#FF6B00;padding:2px 8px;border-radius:50px;font-weight:600}
+
+/* ===================== MODAL ===================== */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,22,40,.55);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:#fff;border-radius:20px;width:100%;max-width:860px;max-height:90vh;overflow-y:auto;transform:scale(.96) translateY(16px);transition:transform .3s;scrollbar-width:thin}
+.modal-overlay.open .modal{transform:scale(1) translateY(0)}
+.modal-header{padding:24px 28px 0;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:10;padding-bottom:20px;border-bottom:1px solid #E8ECF4}
+.modal-header h3{font-size:18px;font-weight:700;color:#0A1628}
+.modal-close{width:36px;height:36px;border:1px solid #E8ECF4;border-radius:8px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#5a6a82;transition:background .2s}
+.modal-close:hover{background:#F0F4FF}
+.modal-body{padding:24px 28px}
+.modal-badge{display:inline-flex;align-items:center;gap:6px;background:#FFF3EC;color:#FF6B00;font-size:12px;font-weight:700;padding:6px 12px;border-radius:6px;margin-bottom:20px;border:1px solid rgba(255,107,0,.2)}
+.modal-badge svg{width:14px;height:14px;stroke:#FF6B00;fill:none;stroke-width:2}
+
+/* Price tiers */
+.price-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
+.tier{border:1.5px solid #E8ECF4;border-radius:12px;padding:14px 12px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative}
+.tier.active,.tier:hover{border-color:#FF6B00;background:#FFF3EC}
+.tier-qty{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8a9ab5;margin-bottom:6px}
+.tier-price{font-size:20px;font-weight:800;color:#0A1628}
+.tier-unit{font-size:11px;color:#8a9ab5;margin-top:2px}
+.tier-badge{position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:#FF6B00;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:50px;white-space:nowrap}
+
+/* Options */
+.option-section{margin-bottom:22px}
+.option-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#5a6a82;margin-bottom:10px}
+.size-btns{display:flex;gap:8px;flex-wrap:wrap}
+.size-btn{padding:8px 16px;border:1.5px solid #E8ECF4;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:#fff;color:#0A1628;transition:all .2s}
+.size-btn.active,.size-btn:hover{border-color:#0A1628;background:#0A1628;color:#fff}
+
+/* Color options */
+.color-options{display:flex;flex-direction:column;gap:10px}
+.color-row{display:flex;align-items:center;gap:12px;padding:12px;border:1.5px solid #E8ECF4;border-radius:12px;transition:border-color .2s}
+.color-row.active{border-color:#0A1628}
+.color-thumb{width:44px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0}
+.color-thumb img{width:100%;height:100%;object-fit:cover}
+.color-info{flex:1}
+.color-name{font-size:14px;font-weight:600;color:#0A1628}
+.color-price{font-size:13px;color:#FF6B00;font-weight:600;margin-top:2px}
+.qty-ctrl{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+.qty-btn{width:30px;height:30px;border:1.5px solid #E8ECF4;border-radius:6px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#0A1628;transition:all .2s;flex-shrink:0}
+.qty-btn:hover{border-color:#FF6B00;color:#FF6B00}
+.qty-val{font-size:15px;font-weight:700;color:#0A1628;min-width:22px;text-align:center}
+
+/* Subtotal */
+.modal-subtotal{background:#F8F9FC;border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.modal-subtotal-label{font-size:14px;font-weight:500;color:#5a6a82}
+.modal-subtotal-val{font-size:22px;font-weight:800;color:#0A1628}
+
+/* Modal actions */
+.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.btn-order{background:#FF6B00;color:#fff;border:none;padding:15px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-order:hover{background:#e05e00;transform:translateY(-1px)}
+.btn-add-cart{background:#fff;color:#0A1628;border:1.5px solid #0A1628;padding:15px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-add-cart:hover{background:#0A1628;color:#fff}
+
+/* Shipping box */
+.shipping-box{border:1px solid #E8ECF4;border-radius:12px;padding:16px 18px}
+.shipping-box h4{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#5a6a82;margin-bottom:12px}
+.shipping-row{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#0A1628;padding:6px 0;border-bottom:1px solid #F0F4FF}
+.shipping-row:last-child{border-bottom:none}
+.shipping-row strong{font-weight:600}
+.shipping-change{color:#FF6B00;text-decoration:none;font-weight:600;font-size:12px;background:none;border:none;cursor:pointer}
+
+/* ===================== GALLERY ===================== */
+.gallery{display:grid;grid-template-columns:80px 1fr;gap:12px;margin-bottom:24px}
+.gallery-thumbs{display:flex;flex-direction:column;gap:8px}
+.gallery-thumb{border:1.5px solid #E8ECF4;border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .2s;aspect-ratio:1;flex-shrink:0}
+.gallery-thumb.active,.gallery-thumb:hover{border-color:#FF6B00}
+.gallery-thumb img,.gallery-thumb video{width:100%;height:100%;object-fit:cover}
+.gallery-main{border-radius:12px;overflow:hidden;background:#F0F4FF;position:relative;aspect-ratio:4/3}
+.gallery-main img,.gallery-main video{width:100%;height:100%;object-fit:cover}
+.gallery-main img{cursor:zoom-in;transition:transform .4s}
+.gallery-main:hover img{transform:scale(1.06)}
+
+/* ===================== FEATURES SECTION ===================== */
+.features-bg{background:#0A1628;padding:96px 0}
+.features-inner{max-width:1320px;margin:0 auto;padding:0 24px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:32px;margin-top:56px}
+.feature-card{padding:32px;border:1px solid rgba(255,255,255,.08);border-radius:16px;background:rgba(255,255,255,.04);transition:background .3s,transform .3s}
+.feature-card:hover{background:rgba(255,255,255,.08);transform:translateY(-4px)}
+.feature-icon{width:48px;height:48px;background:rgba(255,107,0,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.feature-icon svg{width:24px;height:24px;stroke:#FF6B00;fill:none;stroke-width:2}
+.feature-card h3{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px}
+.feature-card p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.65}
+
+/* ===================== REVIEWS ===================== */
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.review-card{background:#fff;border:1px solid #E8ECF4;border-radius:16px;padding:24px}
+.review-stars{display:flex;gap:3px;margin-bottom:14px}
+.review-stars svg{width:16px;height:16px;fill:#FF6B00;stroke:none}
+.review-text{font-size:15px;color:#0A1628;line-height:1.65;margin-bottom:16px}
+.review-author{display:flex;align-items:center;gap:10px}
+.review-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0A1628,#1a3a6b);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.review-name{font-size:13px;font-weight:600;color:#0A1628}
+.review-meta{font-size:12px;color:#8a9ab5;margin-top:1px}
+
+/* ===================== FAQ ===================== */
+.faq-list{display:flex;flex-direction:column;gap:12px;max-width:760px;margin:0 auto}
+.faq-item{border:1px solid #E8ECF4;border-radius:12px;overflow:hidden;background:#fff}
+.faq-q{width:100%;background:none;border:none;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:15px;font-weight:600;color:#0A1628;text-align:left;gap:16px}
+.faq-q svg{flex-shrink:0;transition:transform .3s;width:18px;height:18px;stroke:#5a6a82;fill:none;stroke-width:2}
+.faq-item.open .faq-q svg{transform:rotate(45deg);stroke:#FF6B00}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s}
+.faq-item.open .faq-a{max-height:300px;padding:0 24px 20px}
+.faq-a p{font-size:14px;color:#5a6a82;line-height:1.7}
+
+/* ===================== CONTACT BAND ===================== */
+.contact-band{background:linear-gradient(135deg,#FF6B00 0%,#ff8c38 100%);padding:72px 24px;text-align:center}
+.contact-band h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:800;color:#fff;margin-bottom:12px}
+.contact-band p{font-size:17px;color:rgba(255,255,255,.85);margin-bottom:32px}
+.contact-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-wa{background:#fff;color:#25D366;border:none;padding:14px 28px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,box-shadow .2s;text-decoration:none}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-wave{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.5);padding:14px 28px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .2s;backdrop-filter:blur(8px)}
+.btn-wave:hover{background:rgba(255,255,255,.25)}
+.wave-number{background:rgba(0,0,0,.15);padding:2px 10px;border-radius:50px;font-size:13px;font-family:monospace;letter-spacing:.05em;cursor:pointer;user-select:all}
+
+/* ===================== CART DRAWER ===================== */
+.cart-overlay{position:fixed;inset:0;background:rgba(10,22,40,.45);z-index:800;opacity:0;pointer-events:none;transition:opacity .3s}
+.cart-overlay.open{opacity:1;pointer-events:all}
+.cart-drawer{position:fixed;right:0;top:0;bottom:0;width:100%;max-width:400px;background:#fff;z-index:801;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+.cart-drawer.open{transform:translateX(0)}
+.cart-head{padding:24px;border-bottom:1px solid #E8ECF4;display:flex;justify-content:space-between;align-items:center}
+.cart-head h3{font-size:18px;font-weight:700;color:#0A1628}
+.cart-close{width:36px;height:36px;border:1px solid #E8ECF4;border-radius:8px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#5a6a82}
+.cart-close:hover{background:#F0F4FF}
+.cart-items{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.cart-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#8a9ab5;font-size:14px}
+.cart-empty svg{width:48px;height:48px;stroke:#c8d4e8;fill:none;stroke-width:1.5}
+.cart-item{display:flex;gap:12px;padding:12px;border:1px solid #E8ECF4;border-radius:12px}
+.cart-item-img{width:64px;height:64px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#F0F4FF}
+.cart-item-img img{width:100%;height:100%;object-fit:cover}
+.cart-item-info{flex:1}
+.cart-item-name{font-size:13px;font-weight:600;color:#0A1628;margin-bottom:4px}
+.cart-item-var{font-size:12px;color:#8a9ab5;margin-bottom:8px}
+.cart-item-price{font-size:14px;font-weight:700;color:#FF6B00}
+.cart-item-remove{background:none;border:none;cursor:pointer;color:#c8d4e8;transition:color .2s;margin-left:auto;align-self:flex-start}
+.cart-item-remove:hover{color:#FF6B00}
+.cart-foot{padding:20px 24px;border-top:1px solid #E8ECF4}
+.zone-select{width:100%;padding:12px 14px;border:1.5px solid #E8ECF4;border-radius:10px;font-size:14px;color:#0A1628;margin-bottom:12px;font-family:inherit;appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235a6a82' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;cursor:pointer}
+.cart-totals{font-size:14px;color:#5a6a82;margin-bottom:16px}
+.cart-totals tr td:last-child{text-align:right;font-weight:600;color:#0A1628}
+.cart-totals .total-row td{font-size:17px;font-weight:800;color:#0A1628;padding-top:10px;border-top:1px solid #E8ECF4}
+.cart-checkout{width:100%;background:#FF6B00;color:#fff;border:none;padding:15px;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.cart-checkout:hover{background:#e05e00}
+
+/* ===================== TOAST ===================== */
+.toast-container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:2000;display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none}
+.toast{background:#0A1628;color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(10,22,40,.25);transform:translateY(80px) scale(.9);opacity:0;transition:all .3s cubic-bezier(.4,0,.2,1);pointer-events:auto;min-width:240px}
+.toast.show{transform:translateY(0) scale(1);opacity:1}
+.toast-img{width:40px;height:40px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#1a3a6b}
+.toast-img img{width:100%;height:100%;object-fit:cover}
+.toast-check{width:20px;height:20px;background:#FF6B00;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.toast-check svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:3}
+
+/* ===================== FOOTER ===================== */
+footer{background:#0A1628;color:rgba(255,255,255,.6);padding:72px 24px 32px}
+.footer-inner{max-width:1320px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:56px}
+.footer-brand .logo{margin-bottom:16px;display:inline-flex}
+.footer-brand p{font-size:14px;line-height:1.7;max-width:280px}
+.footer-social{display:flex;gap:10px;margin-top:20px}
+.social-btn{width:36px;height:36px;border:1px solid rgba(255,255,255,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:all .2s;cursor:pointer}
+.social-btn:hover{border-color:#FF6B00;color:#FF6B00}
+.social-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.footer-col h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#fff;margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:#FF6B00}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:13px}
+.footer-badges{display:flex;gap:8px}
+.pay-badge{background:rgba(255,255,255,.07);padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;color:rgba(255,255,255,.5)}
+
+/* ===================== ORDER FORM MODAL ===================== */
+.order-modal-overlay{position:fixed;inset:0;background:rgba(10,22,40,.6);z-index:1100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}
+.order-modal-overlay.open{opacity:1;pointer-events:all}
+.order-modal{background:#fff;border-radius:20px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;transform:scale(.96);transition:transform .3s}
+.order-modal-overlay.open .order-modal{transform:scale(1)}
+.order-modal-head{padding:24px 24px 0;display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.order-modal-head h3{font-size:18px;font-weight:700;color:#0A1628}
+.order-modal-body{padding:0 24px 24px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;color:#5a6a82;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 14px;border:1.5px solid #E8ECF4;border-radius:10px;font-size:14px;color:#0A1628;font-family:inherit;transition:border-color .2s;outline:none;background:#fff}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#0A1628}
+.form-group textarea{min-height:80px;resize:none}
+.delivery-fee-box{background:#FFF3EC;border:1px solid rgba(255,107,0,.2);border-radius:10px;padding:12px 14px;font-size:14px;margin-bottom:16px;color:#0A1628}
+.delivery-fee-box strong{color:#FF6B00}
+.form-submit{width:100%;background:#FF6B00;color:#fff;border:none;padding:15px;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.form-submit:hover{background:#e05e00;transform:translateY(-1px)}
+
+/* ===================== SCROLL REVEAL ===================== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s,transform .65s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}}
+@media(max-width:768px){
+  nav{display:none}
+  .hero h1{font-size:38px}
+  .hero-stats{gap:24px;flex-wrap:wrap}
+  .price-tiers{grid-template-columns:repeat(3,1fr);gap:8px}
+  .tier-price{font-size:16px}
+  .gallery{grid-template-columns:60px 1fr}
+  .modal-actions{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+  .footer-brand{grid-column:auto}
+  .section{padding:64px 16px}
+  .modal-body{padding:16px}
+  .modal-header{padding:16px 16px 16px}
+}
+@media(max-width:480px){.hero{height:80vh;min-height:520px}.header-inner{padding:0 16px}}
+
+/* Search overlay */
+.search-overlay{position:fixed;inset:0;background:rgba(10,22,40,.7);z-index:600;display:flex;align-items:flex-start;justify-content:center;padding:80px 24px;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(8px)}
+.search-overlay.open{opacity:1;pointer-events:all}
+.search-box{background:#fff;border-radius:16px;padding:8px;display:flex;align-items:center;gap:12px;width:100%;max-width:600px}
+.search-input{flex:1;border:none;font-size:17px;outline:none;padding:12px 8px;color:#0A1628;font-family:inherit}
+.search-close{width:40px;height:40px;border:none;background:#F0F4FF;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#5a6a82}
+
+/* Mobile menu */
+.mobile-menu{position:fixed;inset:0;background:#fff;z-index:700;transform:translateX(-100%);transition:transform .35s;padding:24px;display:flex;flex-direction:column;gap:4px}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.mobile-menu a{font-size:20px;font-weight:700;color:#0A1628;text-decoration:none;padding:14px 0;border-bottom:1px solid #F0F4FF;display:block}
+.mobile-menu a:hover{color:#FF6B00}
+.menu-btn{display:none;width:40px;height:40px;border:1px solid #E8ECF4;border-radius:8px;background:#fff;cursor:pointer;align-items:center;justify-content:center;color:#0A1628}
+@media(max-width:768px){.menu-btn{display:flex}}
+</style>
+</head>
+<body>
+
+<!-- Curseur personnalisé -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Toast container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Barre promo -->
+<div class="promo-bar">
+  <div class="promo-track" id="promoTrack">
+    <span>
+      <span class="promo-dot"></span> Livraison rapide à Dakar &amp; partout au Sénégal
+      <span class="promo-dot"></span> Paiement sécurisé Wave &amp; Orange Money
+      <span class="promo-dot"></span> Garantie 6 mois sur tous nos produits
+      <span class="promo-dot"></span> Service client disponible 7j/7
+      <span class="promo-dot"></span> +500 professionnels font confiance à Crystal Shop
+      <span class="promo-dot"></span> Livraison rapide à Dakar &amp; partout au Sénégal
+      <span class="promo-dot"></span> Paiement sécurisé Wave &amp; Orange Money
+      <span class="promo-dot"></span> Garantie 6 mois sur tous nos produits
+      <span class="promo-dot"></span> Service client disponible 7j/7
+      <span class="promo-dot"></span> +500 professionnels font confiance à Crystal Shop
+    </span>
+  </div>
+</div>
+
+<!-- Header -->
+<header id="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
+      </div>
+      <div class="logo-text">Crystal<span>Shop</span></div>
+    </a>
+    <nav>
+      <a href="#products">Produits</a>
+      <a href="#features">Pourquoi nous</a>
+      <a href="#reviews">Avis</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="header-btn" id="searchBtn" title="Recherche">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="header-btn" id="cartBtn" title="Panier">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+      <a href="https://wa.me/221774976364" class="header-cta" target="_blank">Commander sur WhatsApp</a>
+      <button class="menu-btn" id="menuBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-head">
+    <div class="logo-text" style="font-size:20px;font-weight:800;color:#0A1628">Crystal<span style="color:#FF6B00">Shop</span></div>
+    <button class="cart-close" id="menuClose">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <a href="#products" onclick="closeMobileMenu()">Produits</a>
+  <a href="#features" onclick="closeMobileMenu()">Pourquoi nous</a>
+  <a href="#reviews" onclick="closeMobileMenu()">Avis clients</a>
+  <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+</div>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a9ab5" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input class="search-input" placeholder="Rechercher un produit..." id="searchInput"/>
+    <button class="search-close" id="searchClose">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-media">
+    <!-- Remplace hero-bg.jpg par ton image ou vidéo hero -->
+    <img src="images/hero-bg.jpg" alt="Écailleuse électrique Crystal Shop" onerror="this.style.display='none'">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      N° 1 au Sénégal
+    </div>
+    <h1>L'écailleuse électrique<br>des <em>professionnels</em></h1>
+    <p>Gain de temps radical pour pêcheurs, poissonneries et restaurateurs. Fiable, rapide et facile à utiliser — livrée partout au Sénégal.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Voir les produits
+      </button>
+      <a href="https://wa.me/221774976364" class="btn-secondary" target="_blank">Commander via WhatsApp</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>500+</strong><span>Clients satisfaits</span></div>
+      <div class="hero-stat"><strong>3x</strong><span>Plus rapide que manuel</span></div>
+      <div class="hero-stat"><strong>6 mois</strong><span>De garantie</span></div>
+      <div class="hero-stat"><strong>48h</strong><span>Délai de livraison</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Réassurance -->
+<div class="reassurance">
+  <div class="reassurance-track" id="reassuranceTrack">
+    <div class="reassurance-item">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Livraison express Dakar
+    </div>
+    <div class="reassurance-item">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Garantie 6 mois
+    </div>
+    <div class="reassurance-item">
+      <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      Paiement sécurisé
+    </div>
+    <div class="reassurance-item">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Service client 7j/7
+    </div>
+    <div class="reassurance-item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Traitement rapide
+    </div>
+    <div class="reassurance-item">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Livraison express Dakar
+    </div>
+    <div class="reassurance-item">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Garantie 6 mois
+    </div>
+    <div class="reassurance-item">
+      <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      Paiement sécurisé
+    </div>
+    <div class="reassurance-item">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Service client 7j/7
+    </div>
+    <div class="reassurance-item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Traitement rapide
+    </div>
+  </div>
+</div>
+
+<!-- Products -->
+<section id="products">
+  <div class="section">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow reveal">Notre collection</div>
+        <h2 class="section-title reveal">Écailleuses &amp; Accessoires</h2>
+        <p class="section-sub reveal">Pour les particuliers, les pêcheurs et les professionnels de la restauration.</p>
+      </div>
+      <a href="https://wa.me/221774976364" style="font-size:14px;font-weight:600;color:#FF6B00;text-decoration:none;white-space:nowrap" target="_blank">Besoin d'aide pour choisir ?</a>
+    </div>
+    <div class="products-grid" id="productsGrid">
+      <!-- Cards générées par JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features-bg" id="features">
+  <div class="features-inner">
+    <div style="text-align:center">
+      <div class="section-eyebrow reveal" style="color:#FF6B00">Nos avantages</div>
+      <h2 class="section-title reveal" style="color:#fff;text-align:center">Pourquoi choisir Crystal Shop ?</h2>
+      <p class="section-sub reveal" style="color:rgba(255,255,255,.55);margin:0 auto;text-align:center">Une expertise locale au service de votre activité professionnelle.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h3>Puissance maximale</h3>
+        <p>Moteur haute performance pour traiter jusqu'à 200 poissons par heure sans effort.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+        <h3>Design ergonomique</h3>
+        <p>Conception légère et antidérapante pour un confort optimal même lors d'utilisation prolongée.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Garantie 6 mois</h3>
+        <p>Chaque produit est couvert par notre garantie pièces &amp; main-d'œuvre. Service après-vente réactif.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <h3>Livraison rapide</h3>
+        <p>Dakar Centre en 24h, banlieue en 48h. Suivi de commande en temps réel via WhatsApp.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <h3>Prix compétitifs</h3>
+        <p>Meilleurs prix du marché sénégalais avec des remises sur les commandes en volume.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg></div>
+        <h3>Support WhatsApp</h3>
+        <p>Équipe disponible 7j/7 pour vous conseiller et répondre à toutes vos questions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews" style="background:#F8F9FC">
+  <div class="section">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow reveal">Témoignages</div>
+        <h2 class="section-title reveal">Ce que disent nos clients</h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="display:flex;gap:2px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF6B00"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF6B00"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF6B00"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF6B00"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF6B00"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <span style="font-size:14px;font-weight:700;color:#0A1628">4.9/5</span>
+        <span style="font-size:13px;color:#8a9ab5">(127 avis)</span>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="review-text">Franchement je suis bluffé. J'ai une poissonnerie au Marché Tilène et depuis que j'ai acheté l'écailleuse professionnelle, on traite le double de poissons en deux fois moins de temps. Livraison reçue en 24h.</p>
+        <div class="review-author">
+          <div class="review-avatar">MN</div>
+          <div>
+            <div class="review-name">Mamadou Ndiaye</div>
+            <div class="review-meta">Poissonnier, Dakar — Acheté il y a 2 mois</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="review-text">J'utilise le modèle rechargeable pour aller pêcher le weekend. La batterie tient toute la journée et c'est compact. Le service Crystal Shop est très professionnel, commande traitée rapidement.</p>
+        <div class="review-author">
+          <div class="review-avatar">AF</div>
+          <div>
+            <div class="review-name">Aminata Fall</div>
+            <div class="review-meta">Pêcheuse amateur, Mbao — Acheté il y a 1 mois</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="review-text">Notre restaurant commande régulièrement les lames de rechange. Qualité constante, prix imbattables. La livraison est toujours ponctuelle. Je recommande à tous les restaurateurs dakarois.</p>
+        <div class="review-author">
+          <div class="review-avatar">SD</div>
+          <div>
+            <div class="review-name">Serigne Diop</div>
+            <div class="review-meta">Restaurateur, Plateau — Client fidèle</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section" style="max-width:900px">
+    <div style="text-align:center;margin-bottom:56px">
+      <div class="section-eyebrow reveal">FAQ</div>
+      <h2 class="section-title reveal" style="text-align:center">Questions fréquentes</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Comment passer commande ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Cliquez sur le produit de votre choix, sélectionnez la quantité et la couleur, puis cliquez sur "Commander". Vous serez redirigé vers WhatsApp pour finaliser votre commande avec notre équipe. Vous pouvez aussi appeler le +221 77 497 63 64.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Quels sont les délais et frais de livraison ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Dakar Centre (Plateau, Médina, Grand Dakar) : 1 000 FCFA, livraison sous 24h. Dakar Banlieue (Yoff, Parcelles, Pikine, Guédiawaye, Thiaroye, Mbao, Rufisque) : 2 000 FCFA, livraison sous 48h. Pour les autres villes du Sénégal (Thiès, Saint-Louis, Ziguinchor, Kaolack...), les frais sont calculés sur devis via WhatsApp.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Quels moyens de paiement acceptez-vous ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Nous acceptons le paiement par Wave (77 497 63 64), Orange Money, et espèces à la livraison. Le paiement Wave est copié en un clic directement sur notre site pour votre commodité.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Quelle est la garantie sur les produits ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Tous nos produits bénéficient d'une garantie de 6 mois couvrant les défauts de fabrication. En cas de problème, contactez-nous via WhatsApp et nous trouverons une solution rapidement (remplacement ou remboursement).</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Les lames de rechange sont-elles compatibles avec tous les modèles ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Nos lames de rechange sont compatibles avec l'ensemble des modèles Crystal Shop. Précisez simplement votre modèle lors de la commande et notre équipe s'assurera que les pièces correspondent parfaitement.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Puis-je commander en grandes quantités pour revente ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Oui, nous proposons des tarifs dégressifs pour les commandes en volume. Des prix spéciaux sont disponibles pour les revendeurs. Contactez-nous directement via WhatsApp pour discuter d'un partenariat commercial.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Band -->
+<section class="contact-band" id="contact">
+  <h2>Commandez dès maintenant</h2>
+  <p>Notre équipe est disponible 7j/7 pour vous accompagner</p>
+  <div class="contact-btns">
+    <a href="https://wa.me/221774976364" class="btn-wa" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Commander sur WhatsApp
+    </a>
+    <div class="btn-wave" onclick="copyWave()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+      Wave : <span class="wave-number" id="waveNumber">77 497 63 64</span>
+    </div>
+    <a href="mailto:crystalecom2026@gmail.com" class="btn-wave">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      crystalecom2026@gmail.com
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg></div>
+          <div class="logo-text" style="color:#fff">Crystal<span style="color:#FF6B00">Shop</span></div>
+        </a>
+        <p>Spécialiste de l'écailleuse électrique professionnelle au Sénégal. Qualité garantie, livraison rapide.</p>
+        <div class="footer-social">
+          <div class="social-btn" title="WhatsApp" onclick="window.open('https://wa.me/221774976364')">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div class="social-btn" title="Email" onclick="window.location='mailto:crystalecom2026@gmail.com'">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="social-btn" title="Téléphone" onclick="window.location='tel:+221774976364'">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Produits</h4>
+        <ul>
+          <li><a href="#products">Écailleuse portative</a></li>
+          <li><a href="#products">Modèle professionnel</a></li>
+          <li><a href="#products">Sans fil rechargeable</a></li>
+          <li><a href="#products">Accessoires</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service</h4>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="https://wa.me/221774976364" target="_blank">Support WhatsApp</a></li>
+          <li><a href="mailto:crystalecom2026@gmail.com">Contact email</a></li>
+          <li><a href="tel:+221774976364">+221 77 497 63 64</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Livraison</h4>
+        <ul>
+          <li><a href="#faq">Dakar Centre — 1 000F</a></li>
+          <li><a href="#faq">Dakar Banlieue — 2 000F</a></li>
+          <li><a href="https://wa.me/221774976364" target="_blank">Autres villes — Devis</a></li>
+          <li><a href="#faq">Suivi commande</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Crystal Shop Sénégal. Tous droits réservés.</p>
+      <div class="footer-badges">
+        <div class="pay-badge">Wave</div>
+        <div class="pay-badge">Orange Money</div>
+        <div class="pay-badge">Espèces</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Modal Produit -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal" id="modalContent">
+    <div class="modal-header">
+      <h3>Sélectionnez les options et la quantité</h3>
+      <button class="modal-close" onclick="closeModal()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Contenu dynamique -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal Commande -->
+<div class="order-modal-overlay" id="orderModal">
+  <div class="order-modal">
+    <div class="order-modal-head">
+      <h3>Finaliser la commande</h3>
+      <button class="modal-close" onclick="closeOrderModal()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="order-modal-body">
+      <div class="form-group">
+        <label>Votre prénom et nom</label>
+        <input type="text" id="orderName" placeholder="Ex : Mamadou Diallo">
+      </div>
+      <div class="form-group">
+        <label>Numéro de téléphone</label>
+        <input type="tel" id="orderPhone" placeholder="+221 7X XXX XX XX">
+      </div>
+      <div class="form-group">
+        <label>Zone de livraison</label>
+        <select id="orderZone" onchange="updateDeliveryFee()">
+          <option value="">-- Sélectionner votre zone --</option>
+          <option value="centre">Dakar Centre (Plateau, Médina, Grand Dakar) — 1 000 FCFA</option>
+          <option value="banlieue">Dakar Banlieue (Yoff, Parcelles, Pikine...) — 2 000 FCFA</option>
+          <option value="autres">Autres villes du Sénégal — Sur devis</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Adresse précise</label>
+        <input type="text" id="orderAddress" placeholder="Rue, quartier, point de repère...">
+      </div>
+      <div class="form-group">
+        <label>Notes supplémentaires (optionnel)</label>
+        <textarea id="orderNotes" placeholder="Instructions spéciales, horaires préférés..."></textarea>
+      </div>
+      <div class="delivery-fee-box" id="deliveryFeeBox" style="display:none">
+        Frais de livraison : <strong id="deliveryFeeText"></strong>
+      </div>
+      <button class="form-submit" onclick="submitOrder()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Confirmer via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Panier Drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h3>Votre panier</h3>
+    <button class="cart-close" onclick="closeCart()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <p>Votre panier est vide</p>
+    </div>
+  </div>
+  <div class="cart-foot">
+    <select class="zone-select" id="cartZoneSelect" onchange="updateCartTotal()">
+      <option value="">Zone de livraison...</option>
+      <option value="centre">Dakar Centre — 1 000 FCFA</option>
+      <option value="banlieue">Dakar Banlieue — 2 000 FCFA</option>
+      <option value="autres">Autres villes — Sur devis</option>
+    </select>
+    <table class="cart-totals" style="width:100%;border-collapse:collapse">
+      <tr><td style="padding:4px 0">Sous-total</td><td id="cartSubtotal">0 FCFA</td></tr>
+      <tr><td style="padding:4px 0">Livraison</td><td id="cartShipping">—</td></tr>
+      <tr class="total-row"><td style="padding-top:12px">Total</td><td id="cartTotal" style="color:#FF6B00">0 FCFA</td></tr>
+    </table>
+    <br>
+    <button class="cart-checkout" onclick="checkoutWhatsApp()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Commander via WhatsApp
+    </button>
+  </div>
+</div>
+
+<script>
+// ===================== DATA PRODUITS =====================
+// Nommage des images : placez vos fichiers dans le dossier /images/
+// et renommez-les exactement comme indiqué ci-dessous :
+// product1-main.jpg, product1-2.jpg, product1-3.jpg, product1-video.mp4
+// product2-main.jpg, product2-2.jpg, product2-3.jpg, product2-video.mp4
+// product3-main.jpg, product3-2.jpg, product3-3.jpg, product3-video.mp4
+// product4-main.jpg, product4-2.jpg, product4-3.jpg
+
+const PRODUCTS = [
+  {
+    id: 1,
+    name: "Écailleuse Électrique Portative",
+    category: "Particuliers & Amateurs",
+    badge: "Bestseller",
+    badgeClass: "bestseller",
+    rating: 4.9,
+    reviews: 87,
+    price: 25000,
+    oldPrice: 35000,
+    image: "images/product1-main.jpg",
+    gallery: [
+      {type:"img", src:"images/product1-main.jpg"},
+      {type:"img", src:"images/product1-2.jpg"},
+      {type:"img", src:"images/product1-3.jpg"},
+      {type:"video", src:"images/product1-video.mp4"}
+    ],
+    tiers: [
+      {qty:"1–4 unités", price:25000},
+      {qty:"5–19 unités", price:22000, badge:"Remise 12%"},
+      {qty:"20+ unités", price:18000, badge:"Meilleur prix"}
+    ],
+    sizes: ["16x5.5x4.2cm", "18x6x5cm"],
+    colors: [
+      {name:"Bleu Marine", price:25000, img:"images/product1-main.jpg"},
+      {name:"Blanc Nacré", price:25000, img:"images/product1-2.jpg"},
+      {name:"Orange Pro", price:26000, img:"images/product1-3.jpg"}
+    ],
+    description: "Compacte et légère, parfaite pour un usage à domicile ou en pêche loisir. Moteur silencieux haute fréquence."
+  },
+  {
+    id: 2,
+    name: "Écailleuse Professionnelle Puissante",
+    category: "Poissonneries & Restaurants",
+    badge: "Pro",
+    badgeClass: "",
+    rating: 5.0,
+    reviews: 42,
+    price: 45000,
+    oldPrice: 60000,
+    image: "images/product2-main.jpg",
+    gallery: [
+      {type:"img", src:"images/product2-main.jpg"},
+      {type:"img", src:"images/product2-2.jpg"},
+      {type:"img", src:"images/product2-3.jpg"},
+      {type:"video", src:"images/product2-video.mp4"}
+    ],
+    tiers: [
+      {qty:"1–2 unités", price:45000},
+      {qty:"3–9 unités", price:40000, badge:"Remise 11%"},
+      {qty:"10+ unités", price:35000, badge:"Meilleur prix"}
+    ],
+    sizes: ["22x7x6cm", "24x8x7cm"],
+    colors: [
+      {name:"Inox Pro", price:45000, img:"images/product2-main.jpg"},
+      {name:"Noir Carbone", price:46000, img:"images/product2-2.jpg"},
+      {name:"Vert Pro", price:45000, img:"images/product2-3.jpg"}
+    ],
+    description: "Moteur 180W pour traitement intensif. Idéal pour les professionnels traitant de grandes quantités quotidiennement."
+  },
+  {
+    id: 3,
+    name: "Écailleuse Rechargeable Sans Fil",
+    category: "Autonomie Longue Durée",
+    badge: "-25%",
+    badgeClass: "",
+    rating: 4.8,
+    reviews: 63,
+    price: 32000,
+    oldPrice: 42000,
+    image: "images/product3-main.jpg",
+    gallery: [
+      {type:"img", src:"images/product3-main.jpg"},
+      {type:"img", src:"images/product3-2.jpg"},
+      {type:"img", src:"images/product3-3.jpg"},
+      {type:"video", src:"images/product3-video.mp4"}
+    ],
+    tiers: [
+      {qty:"1–3 unités", price:32000},
+      {qty:"4–9 unités", price:28000, badge:"Remise 13%"},
+      {qty:"10+ unités", price:24000, badge:"Meilleur prix"}
+    ],
+    sizes: ["17x5.8x4.5cm"],
+    colors: [
+      {name:"Bleu Turquoise", price:32000, img:"images/product3-main.jpg"},
+      {name:"Blanc Glacier", price:32000, img:"images/product3-2.jpg"},
+      {name:"Rouge Sport", price:33000, img:"images/product3-3.jpg"}
+    ],
+    description: "Batterie lithium 4000mAh — jusqu'à 8h d'autonomie. Charge USB-C rapide en 2h. Parfaite pour la pêche en mer."
+  },
+  {
+    id: 4,
+    name: "Pack Accessoires Complet",
+    category: "Lames • Brosses • Housses",
+    badge: "Nouveau",
+    badgeClass: "",
+    rating: 4.7,
+    reviews: 35,
+    price: 8500,
+    oldPrice: 12000,
+    image: "images/product4-main.jpg",
+    gallery: [
+      {type:"img", src:"images/product4-main.jpg"},
+      {type:"img", src:"images/product4-2.jpg"},
+      {type:"img", src:"images/product4-3.jpg"}
+    ],
+    tiers: [
+      {qty:"1–4 packs", price:8500},
+      {qty:"5–19 packs", price:7000, badge:"Remise 18%"},
+      {qty:"20+ packs", price:5500, badge:"Meilleur prix"}
+    ],
+    sizes: ["Kit Standard", "Kit Pro"],
+    colors: [
+      {name:"Kit Standard", price:8500, img:"images/product4-main.jpg"},
+      {name:"Kit Professionnel", price:14000, img:"images/product4-2.jpg"},
+      {name:"Lames seules x3", price:4500, img:"images/product4-3.jpg"}
+    ],
+    description: "Lames de rechange trempées, brosses de nettoyage anti-bactériennes, housse de protection imperméable."
+  }
+];
+
+// ===================== CART STATE =====================
+let cart = [];
+let currentProduct = null;
+let selectedTier = 0;
+let selectedSize = 0;
+let colorQtys = {};
+let currentGalleryIndex = 0;
+
+// ===================== CURSOR =====================
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  cursorRing.style.left = e.clientX + 'px';
+  cursorRing.style.top = e.clientY + 'px';
+});
+document.addEventListener('mousedown', () => { cursor.classList.add('active'); cursorRing.classList.add('active'); });
+document.addEventListener('mouseup', () => { cursor.classList.remove('active'); cursorRing.classList.remove('active'); });
+
+// ===================== HEADER SCROLL =====================
+window.addEventListener('scroll', () => {
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// ===================== SCROLL REVEAL =====================
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ===================== RENDER PRODUCTS =====================
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = PRODUCTS.map(p => `
+    <div class="product-card reveal" onclick="openModal(${p.id})">
+      <div class="card-img">
+        <img src="${p.image}" alt="${p.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'300\\'><rect fill=\\'%23E8ECF4\\' width=\\'400\\' height=\\'300\\'></rect><text fill=\\'%238a9ab5\\' x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dominant-baseline=\\'middle\\' font-family=\\'Inter\\' font-size=\\'14\\'>${p.name}</text></svg>'">
+        <div class="card-badge ${p.badgeClass}">${p.badge}</div>
+        <button class="card-quick-add" onclick="event.stopPropagation();openModal(${p.id})">Choisir les options</button>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">${p.category}</div>
+        <div class="card-title">${p.name}</div>
+        <div class="card-stars">
+          ${[1,2,3,4,5].map(i => `<svg viewBox="0 0 24 24" width="14" height="14" fill="${i<=Math.round(p.rating)?'#FF6B00':'#E8ECF4'}"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('')}
+          <span>${p.rating} (${p.reviews})</span>
+        </div>
+        <div class="card-price">
+          <span class="price-current">${p.price.toLocaleString('fr-FR')} F</span>
+          <span class="price-old">${p.oldPrice.toLocaleString('fr-FR')} F</span>
+          <span class="price-save">-${Math.round((1-p.price/p.oldPrice)*100)}%</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  document.querySelectorAll('.product-card.reveal').forEach(el => observer.observe(el));
+}
+renderProducts();
+
+// ===================== MODAL =====================
+function openModal(id) {
+  currentProduct = PRODUCTS.find(p => p.id === id);
+  if (!currentProduct) return;
+  selectedTier = 0;
+  selectedSize = 0;
+  colorQtys = {};
+  currentProduct.colors.forEach((c, i) => { colorQtys[i] = 0; });
+  colorQtys[0] = 1;
+  currentGalleryIndex = 0;
+  renderModal();
+  document.getElementById('productModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('productModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('productModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function renderModal() {
+  const p = currentProduct;
+  const body = document.getElementById('modalBody');
+
+  // Gallery
+  const galleryHTML = `
+    <div class="gallery">
+      <div class="gallery-thumbs">
+        ${p.gallery.map((g, i) => `
+          <div class="gallery-thumb ${i===0?'active':''}" onclick="switchGallery(${i})" id="thumb-${i}">
+            ${g.type==='video'
+              ? `<video src="${g.src}" muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video>`
+              : `<img src="${g.src}" alt="Vue ${i+1}" onerror="this.style.display='none'">`
+            }
+          </div>
+        `).join('')}
+      </div>
+      <div class="gallery-main" id="galleryMain">
+        ${p.gallery[0].type==='video'
+          ? `<video src="${p.gallery[0].src}" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video>`
+          : `<img src="${p.gallery[0].src}" alt="${p.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'300\\'><rect fill=\\'%23E8ECF4\\' width=\\'400\\' height=\\'300\\'></rect></svg>'">`
+        }
+      </div>
+    </div>
+  `;
+
+  // Tiers
+  const tiersHTML = `
+    <div style="margin-bottom:24px">
+      <div class="option-label">Paliers de prix</div>
+      <div class="price-tiers">
+        ${p.tiers.map((t, i) => `
+          <div class="tier ${i===selectedTier?'active':''}" onclick="selectTier(${i})" id="tier-${i}">
+            ${t.badge ? `<div class="tier-badge">${t.badge}</div>` : ''}
+            <div class="tier-qty">${t.qty}</div>
+            <div class="tier-price">${t.price.toLocaleString('fr-FR')} F</div>
+            <div class="tier-unit">/ unité</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  // Sizes
+  const sizesHTML = `
+    <div class="option-section">
+      <div class="option-label">Taille</div>
+      <div class="size-btns">
+        ${p.sizes.map((s, i) => `<button class="size-btn ${i===selectedSize?'active':''}" onclick="selectSize(${i})" id="size-${i}">${s}</button>`).join('')}
+      </div>
+    </div>
+  `;
+
+  // Colors
+  const colorsHTML = `
+    <div class="option-section">
+      <div class="option-label">Couleur & Quantité</div>
+      <div class="color-options">
+        ${p.colors.map((c, i) => `
+          <div class="color-row ${i===0?'active':''}" id="color-row-${i}">
+            <div class="color-thumb">
+              <img src="${c.img}" alt="${c.name}" onerror="this.style.display='none'">
+            </div>
+            <div class="color-info">
+              <div class="color-name">${c.name}</div>
+              <div class="color-price">${c.price.toLocaleString('fr-FR')} FCFA</div>
+            </div>
+            <div class="qty-ctrl">
+              <button class="qty-btn" onclick="changeColorQty(${i}, -1)">−</button>
+              <div class="qty-val" id="qty-${i}">${colorQtys[i]||0}</div>
+              <button class="qty-btn" onclick="changeColorQty(${i}, 1)">+</button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  // Livraison
+  const shippingHTML = `
+    <div class="shipping-box">
+      <h4>Expédition</h4>
+      <div class="shipping-row"><span>Mode</span><strong>Standard</strong></div>
+      <div class="shipping-row"><span>Zone</span><strong id="shippingZone">Dakar Centre</strong> <button class="shipping-change" onclick="changeShippingZone()">Changer</button></div>
+      <div class="shipping-row"><span>Frais de port</span><strong id="shippingFee">1 000 FCFA</strong></div>
+      <div class="shipping-row"><span>Délai estimé</span><strong>24 – 48h</strong></div>
+    </div>
+  `;
+
+  body.innerHTML = `
+    <div class="modal-badge">
+      <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      Prix inférieur à celui des produits similaires
+    </div>
+    ${galleryHTML}
+    <h3 style="font-size:20px;font-weight:800;color:#0A1628;margin-bottom:6px">${p.name}</h3>
+    <p style="font-size:14px;color:#5a6a82;margin-bottom:20px;line-height:1.6">${p.description}</p>
+    ${tiersHTML}
+    ${sizesHTML}
+    ${colorsHTML}
+    <div class="modal-subtotal">
+      <div>
+        <div class="modal-subtotal-label">Sous-total</div>
+        <div style="font-size:12px;color:#8a9ab5;margin-top:2px">Hors frais de livraison</div>
+      </div>
+      <div class="modal-subtotal-val" id="modalSubtotal">${p.price.toLocaleString('fr-FR')} FCFA</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-order" onclick="openOrderModal()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Commander
+      </button>
+      <button class="btn-add-cart" onclick="addToCartFromModal()">Ajouter au panier</button>
+    </div>
+    ${shippingHTML}
+  `;
+  updateSubtotal();
+}
+
+function switchGallery(idx) {
+  const p = currentProduct;
+  currentGalleryIndex = idx;
+  const main = document.getElementById('galleryMain');
+  const g = p.gallery[idx];
+  if (g.type === 'video') {
+    main.innerHTML = `<video src="${g.src}" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video>`;
+  } else {
+    main.innerHTML = `<img src="${g.src}" alt="Vue" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;transition:transform .4s">`;
+    main.querySelector('img').addEventListener('mouseover', e => e.target.style.transform='scale(1.08)');
+    main.querySelector('img').addEventListener('mouseout', e => e.target.style.transform='scale(1)');
+  }
+  document.querySelectorAll('.gallery-thumb').forEach((t, i) => t.classList.toggle('active', i===idx));
+}
+
+function selectTier(idx) {
+  selectedTier = idx;
+  document.querySelectorAll('.tier').forEach((t, i) => t.classList.toggle('active', i===idx));
+  updateSubtotal();
+}
+
+function selectSize(idx) {
+  selectedSize = idx;
+  document.querySelectorAll('.size-btn').forEach((b, i) => b.classList.toggle('active', i===idx));
+}
+
+function changeColorQty(idx, delta) {
+  colorQtys[idx] = Math.max(0, (colorQtys[idx]||0) + delta);
+  const el = document.getElementById(`qty-${idx}`);
+  if (el) el.textContent = colorQtys[idx];
+  document.getElementById(`color-row-${idx}`).classList.toggle('active', colorQtys[idx] > 0);
+  updateSubtotal();
+}
+
+function updateSubtotal() {
+  if (!currentProduct) return;
+  const tierPrice = currentProduct.tiers[selectedTier].price;
+  const total = Object.values(colorQtys).reduce((s, q) => s + q, 0) * tierPrice;
+  const el = document.getElementById('modalSubtotal');
+  if (el) el.textContent = total.toLocaleString('fr-FR') + ' FCFA';
+}
+
+let shippingZone = 'centre';
+function changeShippingZone() {
+  const zones = ['centre','banlieue','autres'];
+  const labels = ['Dakar Centre','Dakar Banlieue','Autres villes'];
+  const fees = ['1 000 FCFA','2 000 FCFA','Sur devis'];
+  const idx = (zones.indexOf(shippingZone) + 1) % 3;
+  shippingZone = zones[idx];
+  const z = document.getElementById('shippingZone');
+  const f = document.getElementById('shippingFee');
+  if (z) z.textContent = labels[idx];
+  if (f) f.textContent = fees[idx];
+}
+
+// ===================== ORDER MODAL =====================
+function openOrderModal() {
+  document.getElementById('orderModal').classList.add('open');
+}
+function closeOrderModal() {
+  document.getElementById('orderModal').classList.remove('open');
+}
+document.getElementById('orderModal').addEventListener('click', function(e) {
+  if (e.target === this) closeOrderModal();
+});
+
+function updateDeliveryFee() {
+  const zone = document.getElementById('orderZone').value;
+  const box = document.getElementById('deliveryFeeBox');
+  const text = document.getElementById('deliveryFeeText');
+  if (!zone) { box.style.display='none'; return; }
+  box.style.display = 'block';
+  if (zone==='centre') text.textContent = '1 000 FCFA';
+  else if (zone==='banlieue') text.textContent = '2 000 FCFA';
+  else text.textContent = 'Sur devis — notre équipe vous contactera';
+}
+
+function submitOrder() {
+  const name = document.getElementById('orderName').value.trim();
+  const phone = document.getElementById('orderPhone').value.trim();
+  const zone = document.getElementById('orderZone').value;
+  const address = document.getElementById('orderAddress').value.trim();
+  const notes = document.getElementById('orderNotes').value.trim();
+  if (!name || !phone || !zone) {
+    showToast('Veuillez remplir tous les champs obligatoires', null, true);
+    return;
+  }
+  const zoneLabels = {centre:'Dakar Centre — 1 000 FCFA', banlieue:'Dakar Banlieue — 2 000 FCFA', autres:'Autres villes — Sur devis'};
+  const p = currentProduct;
+  const tierPrice = p ? p.tiers[selectedTier].price : 0;
+  const colorDetails = p ? p.colors.map((c, i) => colorQtys[i]>0 ? `${c.name} x${colorQtys[i]}` : null).filter(Boolean).join(', ') : '';
+  const total = p ? Object.values(colorQtys).reduce((s, q) => s + q, 0) * tierPrice : 0;
+
+  let msg = `Bonjour Crystal Shop ! Je souhaite commander :\n\n`;
+  if (p) msg += `*Produit :* ${p.name}\n*Taille :* ${p.sizes[selectedSize]}\n*Couleurs/Qté :* ${colorDetails||'Non précisé'}\n*Total produit :* ${total.toLocaleString('fr-FR')} FCFA\n\n`;
+  msg += `*Nom :* ${name}\n*Téléphone :* ${phone}\n*Zone :* ${zoneLabels[zone]||zone}\n*Adresse :* ${address||'Non précisée'}\n`;
+  if (notes) msg += `*Notes :* ${notes}\n`;
+  msg += `\nMerci !`;
+
+  window.open(`https://wa.me/221774976364?text=${encodeURIComponent(msg)}`, '_blank');
+  closeOrderModal();
+  closeModal();
+}
+
+// ===================== PANIER =====================
+function addToCartFromModal() {
+  if (!currentProduct) return;
+  const p = currentProduct;
+  const tierPrice = p.tiers[selectedTier].price;
+  p.colors.forEach((c, i) => {
+    if (colorQtys[i] > 0) {
+      const key = `${p.id}-${i}`;
+      const existing = cart.find(item => item.key === key);
+      if (existing) { existing.qty += colorQtys[i]; }
+      else { cart.push({ key, id: p.id, name: p.name, color: c.name, price: tierPrice, qty: colorQtys[i], img: c.img }); }
+    }
+  });
+  if (Object.values(colorQtys).every(q => q === 0)) {
+    cart.push({ key: `${p.id}-0-t`, id: p.id, name: p.name, color: p.colors[0].name, price: tierPrice, qty: 1, img: p.colors[0].img });
+  }
+  updateCartUI();
+  showToast(`${p.name} ajouté au panier`, p.image);
+  closeModal();
+}
+
+function updateCartUI() {
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cartBadge').textContent = count;
+  document.getElementById('cartSubtotal').textContent = total.toLocaleString('fr-FR') + ' FCFA';
+  updateCartTotal();
+
+  const container = document.getElementById('cartItems');
+  if (cart.length === 0) {
+    container.innerHTML = `<div class="cart-empty"><svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#c8d4e8" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><p>Votre panier est vide</p></div>`;
+    return;
+  }
+  container.innerHTML = cart.map((item, idx) => `
+    <div class="cart-item">
+      <div class="cart-item-img"><img src="${item.img}" alt="${item.name}" onerror="this.style.display='none'"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-var">${item.color} · Qté: ${item.qty}</div>
+        <div class="cart-item-price">${(item.price * item.qty).toLocaleString('fr-FR')} FCFA</div>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart(${idx})">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  `).join('');
+}
+
+function updateCartTotal() {
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const zone = document.getElementById('cartZoneSelect').value;
+  let shipping = 0;
+  let shippingLabel = '—';
+  if (zone === 'centre') { shipping = 1000; shippingLabel = '1 000 FCFA'; }
+  else if (zone === 'banlieue') { shipping = 2000; shippingLabel = '2 000 FCFA'; }
+  else if (zone === 'autres') { shippingLabel = 'Sur devis'; }
+  document.getElementById('cartShipping').textContent = shippingLabel;
+  const total = subtotal + (zone==='autres' ? 0 : shipping);
+  document.getElementById('cartTotal').textContent = (zone==='autres' ? subtotal.toLocaleString('fr-FR') + ' FCFA + livraison' : total.toLocaleString('fr-FR') + ' FCFA');
+}
+
+function removeFromCart(idx) {
+  cart.splice(idx, 1);
+  updateCartUI();
+}
+
+function openCart() {
+  document.getElementById('cartDrawer').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('cartBtn').addEventListener('click', openCart);
+
+function checkoutWhatsApp() {
+  if (cart.length === 0) { showToast('Votre panier est vide', null, true); return; }
+  const zone = document.getElementById('cartZoneSelect').value;
+  const zoneLabels = {centre:'Dakar Centre — 1 000 FCFA', banlieue:'Dakar Banlieue — 2 000 FCFA', autres:'Autres villes — Sur devis'};
+  let msg = `Bonjour Crystal Shop ! Voici ma commande :\n\n`;
+  cart.forEach(item => { msg += `• ${item.name} (${item.color}) x${item.qty} = ${(item.price*item.qty).toLocaleString('fr-FR')} FCFA\n`; });
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  msg += `\n*Sous-total :* ${subtotal.toLocaleString('fr-FR')} FCFA\n`;
+  if (zone) msg += `*Zone :* ${zoneLabels[zone]||zone}\n`;
+  msg += `\nMerci de me confirmer la commande !`;
+  window.open(`https://wa.me/221774976364?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// ===================== TOAST =====================
+function showToast(message, imgSrc, isError = false) {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `
+    ${imgSrc ? `<div class="toast-img"><img src="${imgSrc}" alt="" onerror="this.style.display='none'"></div>` : ''}
+    <div class="toast-check" style="${isError ? 'background:#e05e00' : ''}">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <span>${message}</span>
+  `;
+  container.appendChild(toast);
+  requestAnimationFrame(() => { requestAnimationFrame(() => { toast.classList.add('show'); }); });
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 350);
+  }, 3000);
+}
+
+// ===================== FAQ =====================
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ===================== WAVE COPY =====================
+function copyWave() {
+  const num = '77 497 63 64';
+  navigator.clipboard.writeText(num).then(() => {
+    showToast('Numéro Wave copié : ' + num);
+  }).catch(() => {
+    showToast('Numéro Wave : ' + num);
+  });
+}
+
+// ===================== SEARCH =====================
+document.getElementById('searchBtn').addEventListener('click', () => {
+  document.getElementById('searchOverlay').classList.add('open');
+  setTimeout(() => document.getElementById('searchInput').focus(), 100);
+});
+document.getElementById('searchClose').addEventListener('click', () => {
+  document.getElementById('searchOverlay').classList.remove('open');
+});
+document.getElementById('searchOverlay').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('open');
+});
+
+// ===================== MOBILE MENU =====================
+document.getElementById('menuBtn').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.remove('open');
+});
+function closeMobileMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// ===================== SCROLL REVEAL (re-run) =====================
+setTimeout(() => {
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}, 100);
+</script>
+</body>
+</html>
