@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crystal Shop - Écailleuse Électrique Premium</title>
+    <title>Crystal Shop - Écailleuse Manuelle Premium</title>
     <style>
         * {
             margin: 0;
@@ -12,14 +12,14 @@
         }
 
         :root {
-            --primary-blue: #2c5282;
-            --light-blue: #e8f0f8;
-            --accent-orange: #ff6b35;
-            --dark-gray: #1a202c;
-            --light-gray: #f7fafc;
-            --border-gray: #e2e8f0;
-            --text-gray: #4a5568;
-            --success-green: #48bb78;
+            --primary-blue: #1a3a4d;
+            --light-blue: #f5f7fa;
+            --accent-orange: #e07856;
+            --dark-gray: #0f1419;
+            --light-gray: #fafbfc;
+            --border-gray: transparent;
+            --text-gray: #475569;
+            --success-green: #4a9d6f;
         }
 
         body {
@@ -139,7 +139,7 @@
 
         /* Hero section */
         .hero {
-            background: linear-gradient(135deg, var(--light-blue) 0%, #f0f9ff 100%);
+            background: linear-gradient(135deg, var(--light-gray) 0%, #f8f9fc 100%);
             padding: 80px 20px;
             text-align: center;
         }
@@ -150,7 +150,7 @@
         }
 
         .hero h1 {
-            font-size: 52px;
+            font-size: 42px;
             font-weight: 700;
             color: var(--primary-blue);
             margin-bottom: 16px;
@@ -226,17 +226,33 @@
         }
 
         .product-card {
-            background: white;
-            border: 1px solid var(--border-gray);
-            border-radius: 8px;
+            background: transparent;
+            border: none;
+            border-radius: 0;
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: white;
+            border-radius: 12px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
         }
 
         .product-card:hover {
-            border-color: var(--accent-orange);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
             transform: translateY(-4px);
         }
 
@@ -249,6 +265,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 12px;
         }
 
         .product-image img,
@@ -294,7 +311,9 @@
         }
 
         .product-info {
-            padding: 20px;
+            padding: 24px;
+            background: transparent;
+            border-radius: 0 0 12px 12px;
         }
 
         .product-name {
@@ -883,7 +902,7 @@
 
         /* Section témoignages */
         .testimonials {
-            background: var(--light-blue);
+            background: linear-gradient(135deg, var(--light-gray) 0%, #f8f9fc 100%);
         }
 
         .testimonial-grid {
@@ -893,10 +912,33 @@
         }
 
         .testimonial-card {
-            background: white;
+            background: transparent;
             padding: 24px;
-            border-radius: 8px;
+            border-radius: 12px;
             border-left: 4px solid var(--accent-orange);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: white;
+            border-radius: 12px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .testimonial-card:hover::before {
+            opacity: 1;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
         }
 
         .testimonial-rating {
@@ -1100,6 +1142,314 @@
             }
         }
 
+        /* Section Démonstration Vidéo */
+        .demo-section {
+            background: var(--dark-gray);
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            align-items: center;
+            min-height: 600px;
+        }
+
+        .demo-video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 600px;
+            overflow: hidden;
+            background: black;
+        }
+
+        .demo-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .demo-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .demo-badge {
+            background: var(--accent-orange);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .demo-content {
+            padding: 60px 40px;
+            color: white;
+        }
+
+        .demo-content h1 {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .demo-content p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 32px;
+            line-height: 1.8;
+            max-width: 450px;
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 1024px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .demo-video-wrapper {
+                min-height: 400px;
+                order: 2;
+            }
+
+            .demo-content {
+                order: 1;
+                padding: 40px 20px;
+            }
+
+            .demo-content h1 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-video-wrapper {
+                min-height: 300px;
+            }
+
+            .demo-content {
+                padding: 30px 20px;
+            }
+
+            .demo-content h1 {
+                font-size: 28px;
+            }
+
+            .demo-content p {
+                font-size: 14px;
+            }
+
+            .demo-buttons {
+                flex-direction: column;
+            }
+
+            .demo-buttons button {
+                width: 100%;
+            }
+        }
+        .explanation-section {
+            background: linear-gradient(135deg, var(--light-gray) 0%, #f8f9fc 100%);
+            padding: 80px 20px;
+        }
+
+        .explanation-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .explanation-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .explanation-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border-left: 6px solid var(--accent-orange);
+        }
+
+        .explanation-text {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .explanation-text p {
+            font-size: 16px;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .explanation-text strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .fade-in-text {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .how-to-use {
+            background: var(--light-blue);
+            padding: 24px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .how-to-use h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 16px;
+        }
+
+        .how-to-use ol {
+            margin-left: 20px;
+            color: var(--text-gray);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .how-to-use li {
+            margin-bottom: 12px;
+        }
+
+        .how-to-use strong {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .benefits {
+            background: #fff9f0;
+            padding: 24px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .benefits h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 16px;
+        }
+
+        .benefits ul {
+            list-style: none;
+            columns: 2;
+            column-gap: 30px;
+            color: var(--text-gray);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .benefits li {
+            margin-bottom: 10px;
+            break-inside: avoid;
+        }
+
+        .icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        .reassurance-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            margin-left: auto;
+            margin-right: auto;
+            background: var(--light-blue);
+            border-radius: 8px;
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .explanation-section {
+                padding: 40px 20px;
+            }
+
+            .explanation-title {
+                font-size: 32px;
+                margin-bottom: 24px;
+            }
+
+            .explanation-content {
+                padding: 24px;
+            }
+
+            .benefits ul {
+                columns: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -1156,7 +1506,7 @@
                 <a href="#contact">Contact</a>
             </nav>
             <div class="header-icons">
-                <button class="icon-btn" onclick="openCart()">
+                <button class="icon-btn" onclick="openCart()" title="Panier">
                     🛒
                     <span class="cart-count" id="cart-count">0</span>
                 </button>
@@ -1164,19 +1514,84 @@
         </div>
     </header>
 
+    <!-- Section Démonstration Vidéo -->
+    <section class="demo-section">
+        <div class="demo-container">
+            <div class="demo-video-wrapper">
+                <video 
+                    class="demo-video" 
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline
+                    src="https://raw.githubusercontent.com/projetmahwaccs-cpu/CRYSTAL-ECAILLEUSE/main/___mp4">
+                </video>
+                <div class="demo-overlay">
+                    <div class="demo-badge">DÉMONSTRATION EN DIRECT</div>
+                </div>
+            </div>
+            <div class="demo-content">
+                <h1>Écailleuse Manuelle<br>Premium & Ergonomique</h1>
+                <p>Découvrez comment notre écailleuse manuelle transforme l'écaillage de poisson en quelques secondes. Design innovant, résultats professionnels, sans électricité.</p>
+                <div class="demo-buttons">
+                    <button class="cta-button" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">Découvrir nos produits</button>
+                    <button class="cta-button-outline" onclick="document.querySelector('.explanation-section').scrollIntoView({behavior: 'smooth'})">En savoir plus</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Hero section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Écailleuse Électrique<br>Premium & Durable</h1>
-            <p>Technologie innovante pour écailler vos poissons en quelques secondes. Parfait pour les particuliers, pêcheurs et commerçants.</p>
-            <button class="cta-button" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">Découvrir nos produits</button>
+            <h1>Pratique, fiable et efficace</h1>
+            <p>L'écailleuse manuelle Crystal Shop : la solution simple et performante pour écailler vos poissons en quelques secondes, sans effort.</p>
+            <button class="cta-button" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">Voir les modèles disponibles</button>
+        </div>
+    </section>
+
+    <!-- Section Explication -->
+    <section class="explanation-section">
+        <div class="explanation-container">
+            <div class="explanation-content">
+                <h2 class="explanation-title">Comment ça marche ?</h2>
+                <div class="explanation-text">
+                    <p class="fade-in-text" style="animation-delay: 0.1s;">
+                        <strong>L'écailleuse manuelle Crystal Shop</strong> est un outil révolutionnaire conçu pour écailler rapidement et efficacement tous types de poissons. Avec son couvercle en plastique amovible et son design ergonomique, c'est la solution parfaite pour les particuliers, pêcheurs et restaurateurs.
+                    </p>
+                    <p class="fade-in-text" style="animation-delay: 0.3s;">
+                        <strong>Fonctionnement simple :</strong> Remplissez le couvercle de vos poissons, puis utilisez le système de grattage manuel pour enlever les écailles en quelques secondes. Pas besoin d'électricité, pas de bruit, juste une efficacité pure !
+                    </p>
+                    <div class="how-to-use fade-in-text" style="animation-delay: 0.5s;">
+                        <h3>Comment utiliser votre écailleuse :</h3>
+                        <ol>
+                            <li><strong>Préparez le poisson</strong> - Humidifiez légèrement le poisson avec de l'eau froide</li>
+                            <li><strong>Placez le poisson</strong> - Posez-le dans le couvercle amovible en plastique</li>
+                            <li><strong>Grattez les écailles</strong> - Utilisez le grattoir manuel avec un mouvement de haut en bas</li>
+                            <li><strong>Rincez complètement</strong> - Lavez à l'eau claire pour enlever tous les résidus</li>
+                            <li><strong>Nettoyez l'appareil</strong> - Passez au lave-vaisselle ou rincez simplement à l'eau (même sûr aux micro-ondes !)</li>
+                        </ol>
+                    </div>
+                    <div class="benefits fade-in-text" style="animation-delay: 0.7s;">
+                        <h3>Avantages de notre écailleuse :</h3>
+                        <ul>
+                            <li><span class="icon">✓</span> Couvercle amovible en plastique alimentaire</li>
+                            <li><span class="icon">✓</span> Complètement lave-vaisselle compatible</li>
+                            <li><span class="icon">✓</span> Sûre aux micro-ondes et au lave-vaisselle</li>
+                            <li><span class="icon">✓</span> Design ergonomique pour grip optimal</li>
+                            <li><span class="icon">✓</span> Aucune électricité requise - idéale pour partout</li>
+                            <li><span class="icon">✓</span> Écologique et durable - investissement long terme</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Produits -->
     <section class="section" id="products">
-        <h2 class="section-title">Nos Écailleuses Électriques</h2>
-        <p class="section-subtitle">Sélectionnez le modèle qui correspond à vos besoins</p>
+        <h2 class="section-title">Nos Écailleuses Manuelles</h2>
+        <p class="section-subtitle">Choisissez votre modèle préféré</p>
         
         <div class="products-grid" id="products-grid">
             <!-- Les produits seront générés par JavaScript -->
@@ -1394,7 +1809,7 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>À propos</h4>
-                <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.6;">Crystal Shop : votre partenaire pour les meilleures écailleuses électriques au Sénégal. Qualité, fiabilité et service client au cœur de notre engagement.</p>
+                <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.6;">Crystal Shop : votre partenaire pour les meilleures écailleuses manuelles au Sénégal. Qualité, fiabilité et service client au cœur de notre engagement.</p>
             </div>
 
             <div class="footer-section">
@@ -1431,7 +1846,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2026 Crystal Shop. Tous droits réservés. | Vente d'écailleuses électriques au Sénégal</p>
+            <p>&copy; 2026 Crystal Shop. Tous droits réservés. | Vente d'écailleuses manuelles au Sénégal</p>
         </div>
     </footer>
 
@@ -1443,8 +1858,8 @@
         const products = [
             {
                 id: 1,
-                name: "Écailleuse Électrique Portative",
-                description: "Parfaite pour les particuliers et pêcheurs amateurs",
+                name: "Écailleuse Manuelle Standard",
+                description: "Couvercle amovible, lave-vaisselle compatible",
                 price: 1500,
                 rating: 4.8,
                 reviews: 24,
@@ -1457,8 +1872,8 @@
             },
             {
                 id: 2,
-                name: "Écailleuse Professionnelle Puissante",
-                description: "Pour poissonneries et restaurants",
+                name: "Écailleuse Manuelle Professionnelle",
+                description: "Design ergonomique pour usage intensif",
                 price: 1500,
                 rating: 4.9,
                 reviews: 31,
@@ -1471,8 +1886,8 @@
             },
             {
                 id: 3,
-                name: "Écailleuse Rechargeable Sans Fil",
-                description: "Autonomie batterie longue durée",
+                name: "Écailleuse Manuelle Compacte",
+                description: "Parfaite pour voyages et petits espaces",
                 price: 1500,
                 rating: 4.7,
                 reviews: 18,
@@ -1485,8 +1900,8 @@
             },
             {
                 id: 4,
-                name: "Kit Accessoires Complet",
-                description: "Lames, brosses et housses de protection",
+                name: "Kit Accessoires Premium",
+                description: "Grattoirs supplémentaires et housse de protection",
                 price: 1500,
                 rating: 4.6,
                 reviews: 12,
