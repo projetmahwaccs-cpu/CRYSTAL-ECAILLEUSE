@@ -251,14 +251,16 @@
             justify-content: center;
         }
 
-        .product-image img {
+        .product-image img,
+        .product-image video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
 
-        .product-card:hover .product-image img {
+        .product-card:hover .product-image img,
+        .product-card:hover .product-image video {
             transform: scale(1.05);
         }
 
@@ -369,6 +371,7 @@
             z-index: 1000;
             padding: 20px;
             animation: fadeIn 0.3s ease;
+            overflow-y: auto;
         }
 
         @keyframes fadeIn {
@@ -378,8 +381,9 @@
 
         .modal.active {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
+            padding-top: 40px;
         }
 
         .modal-content {
@@ -387,8 +391,6 @@
             border-radius: 12px;
             width: 100%;
             max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
             animation: slideUp 0.3s ease;
         }
 
@@ -459,6 +461,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
         .gallery-main img,
@@ -466,6 +469,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            cursor: zoom-in;
+        }
+
+        .gallery-main.zoomed img,
+        .gallery-main.zoomed video {
+            cursor: zoom-out;
         }
 
         .gallery-thumbs {
@@ -806,7 +815,8 @@
             flex-shrink: 0;
         }
 
-        .cart-item-image img {
+        .cart-item-image img,
+        .cart-item-image video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -1291,7 +1301,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-gallery">
-                    <div class="gallery-main" id="gallery-main">
+                    <div class="gallery-main" id="gallery-main" onclick="toggleZoom(event)">
                         <!-- Image/vidéo principale -->
                     </div>
                     <div class="gallery-thumbs" id="gallery-thumbs">
@@ -1426,6 +1436,9 @@
     </footer>
 
     <script>
+        // URLs GitHub
+        const GITHUB_BASE = "https://raw.githubusercontent.com/projetmahwaccs-cpu/CRYSTAL-ECAILLEUSE/main/";
+
         // Données des produits
         const products = [
             {
@@ -1435,7 +1448,8 @@
                 price: 1500,
                 rating: 4.8,
                 reviews: 24,
-                image: "/mnt/user-data/uploads/Screenshot_2026-06-26_061037.png",
+                image: GITHUB_BASE + "Screenshot_2026-06-26_061037.png",
+                video: GITHUB_BASE + "___mp4",
                 colors: [
                     { name: "Bleu", color: "#6b9fb0", price: 1500 },
                     { name: "Blanc", color: "#e8e8e8", price: 1500 }
@@ -1448,7 +1462,8 @@
                 price: 1500,
                 rating: 4.9,
                 reviews: 31,
-                image: "/mnt/user-data/uploads/Screenshot_2026-06-26_061106.png",
+                image: GITHUB_BASE + "Screenshot_2026-06-26_061106.png",
+                video: GITHUB_BASE + "____mp4",
                 colors: [
                     { name: "Gris", color: "#a0a0a0", price: 1500 },
                     { name: "Bleu marine", color: "#2c5282", price: 1500 }
@@ -1461,7 +1476,8 @@
                 price: 1500,
                 rating: 4.7,
                 reviews: 18,
-                image: "/mnt/user-data/uploads/Screenshot_2026-06-26_061115.png",
+                image: GITHUB_BASE + "Screenshot_2026-06-26_061115.png",
+                video: GITHUB_BASE + "_____mp4",
                 colors: [
                     { name: "Blanc cristal", color: "#f5f5f5", price: 1500 },
                     { name: "Bleu ciel", color: "#b3d9e6", price: 1500 }
@@ -1474,7 +1490,8 @@
                 price: 1500,
                 rating: 4.6,
                 reviews: 12,
-                image: "/mnt/user-data/uploads/Screenshot_2026-06-26_061124.png",
+                image: GITHUB_BASE + "Screenshot_2026-06-26_061124.png",
+                video: null,
                 colors: [
                     { name: "Gris clair", color: "#b0b0b0", price: 1500 }
                 ]
@@ -1501,9 +1518,44 @@
             const galleryMain = document.getElementById("gallery-main");
             const galleryThumbs = document.getElementById("gallery-thumbs");
             
-            galleryMain.innerHTML = `<img src="${currentProduct.image}" alt="${currentProduct.name}" style="cursor: zoom-in;" onclick="this.style.transform = this.style.transform === 'scale(2)' ? 'scale(1)' : 'scale(2)'; this.style.transformOrigin = 'center';">`;
+            let galleryHTML = '';
+            let thumbsHTML = '';
+
+            // Image principale
+            galleryHTML = `<img src="${currentProduct.image}" alt="${currentProduct.name}">`;
+            thumbsHTML = `<div class="thumb active" onclick="switchGallery(this, '${currentProduct.image}', 'img')"><img src="${currentProduct.image}" alt=""></div>`;
+
+            // Vidéo si disponible
+            if (currentProduct.video) {
+                galleryHTML += `<video style="display:none;" src="${currentProduct.video}" controls autoplay muted loop></video>`;
+                thumbsHTML += `<div class="thumb" onclick="switchGallery(this, '${currentProduct.video}', 'video')"><video src="${currentProduct.video}" muted></video></div>`;
+            }
+
+            galleryMain.innerHTML = galleryHTML;
+            galleryThumbs.innerHTML = thumbsHTML;
+        }
+
+        function switchGallery(thumb, src, type) {
+            document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
+            thumb.classList.add("active");
             
-            galleryThumbs.innerHTML = `<div class="thumb active" onclick="switchGallery(this, '${currentProduct.image}')"><img src="${currentProduct.image}" alt=""></div>`;
+            const galleryMain = document.getElementById("gallery-main");
+            const elements = galleryMain.querySelectorAll("img, video");
+            
+            if (type === 'img') {
+                const img = galleryMain.querySelector("img");
+                if (img) img.src = src;
+                elements.forEach(el => el.style.display = el.tagName === 'IMG' ? 'block' : 'none');
+            } else {
+                const video = galleryMain.querySelector("video");
+                if (video) video.src = src;
+                elements.forEach(el => el.style.display = el.tagName === 'VIDEO' ? 'block' : 'none');
+            }
+        }
+
+        function toggleZoom(event) {
+            const galleryMain = document.getElementById("gallery-main");
+            galleryMain.classList.toggle("zoomed");
         }
 
         // Afficher modal produit
@@ -1657,18 +1709,22 @@
                 return;
             }
             
-            cartItemsDiv.innerHTML = cartItems.map((item, idx) => `
+            cartItemsDiv.innerHTML = cartItems.map((item, idx) => {
+                const qty = Object.values(item.quantities).reduce((a, b) => a + b);
+                const price = qty * 1500;
+                return `
                 <div class="cart-item">
                     <div class="cart-item-image">
                         <img src="${item.image}" alt="${item.name}">
                     </div>
                     <div class="cart-item-details">
                         <div class="cart-item-name">${item.name}</div>
-                        <div class="cart-item-price">${Object.values(item.quantities).reduce((a, b) => a + b) * 1500}.toLocaleString('fr-SN') FCFA</div>
+                        <div class="cart-item-price">${price.toLocaleString('fr-SN')} FCFA</div>
                     </div>
                     <button class="cart-item-remove" onclick="removeFromCart(${idx})">✕</button>
                 </div>
-            `).join("");
+            `;
+            }).join("");
             
             cartCount.textContent = cartItems.length;
             updateCartTotal();
