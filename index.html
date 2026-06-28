@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crystal Shop - Écailleuse Manuelle Premium</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -950,7 +952,7 @@
     <!-- Barre Promotionnelle -->
     <div class="promo-bar">
         <div class="promo-content">
-            <div class="promo-item">★ Livraison gratuite pour les commandes supérieures à 15,000 FCFA</div>
+            <div class="promo-item">* Livraison gratuite pour les commandes supérieures à 15,000 FCFA</div>
             <div class="promo-item">◆ Écaille vos poissons comme un pro avec notre écailleuse premium</div>
             <div class="promo-item">✓ Satisfait ou remboursé - Garantie 30 jours</div>
         </div>
@@ -959,7 +961,7 @@
     <!-- Header -->
     <header>
         <div class="header-content">
-            <a href="index.html" class="back-home-btn">← Back Home</a>
+            <a href="index.html" class="back-home-btn"><i class="fas fa-home"></i> Accueil</a>
             <a href="#" class="logo">Crystal Shop</a>
             <nav>
                 <a href="#features">Caractéristiques</a>
@@ -967,7 +969,7 @@
                 <a href="#contact">Contact</a>
             </nav>
             <div class="header-icons">
-                <button class="icon-btn" onclick="openCart()">[Cart]<span class="cart-count" id="cart-count">0</span></button>
+                <button class="icon-btn" onclick="openCart()"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cart-count">0</span></button>
             </div>
         </div>
     </header>
@@ -996,7 +998,7 @@
                 <div class="product-header">
                     <h2 class="product-title">Écailleuse Manuelle Premium</h2>
                     <div class="product-rating">
-                        <span>★</span> 4.8 (127 avis)
+                        <span>*</span> 4.8 (127 avis)
                     </div>
                     <div class="product-price">1,500 FCFA</div>
                 </div>
@@ -1021,7 +1023,7 @@
                 <div class="address-section">
                     <label class="section-label">Adresse de livraison:</label>
                     <input type="text" id="delivery-address" class="address-input" placeholder="Ex: Mermoz, Dakar - Apt 5, Rue XYZ" required>
-                    <small style="color: var(--text-gray); display: block; margin-top: 8px;">[location] Précisez votre localisation exacte pour faciliter la livraison</small>
+                    <small style="color: var(--text-gray); display: block; margin-top: 8px;"><i class="fas fa-map-marker-alt"></i> Précisez votre localisation exacte pour faciliter la livraison</small>
                 </div>
 
                 <!-- Quantity -->
@@ -1036,8 +1038,8 @@
 
                 <!-- Action Buttons -->
                 <div class="product-actions">
-                    <button class="btn-primary" onclick="addToCart()">Ajouter au Panier</button>
-                    <button class="btn-secondary" onclick="orderViaWhatsApp()">Commander via WhatsApp</button>
+                    <button class="btn-primary" onclick="addToCart()"><i class="fas fa-shopping-cart"></i> Ajouter au Panier</button>
+                    <button class="btn-secondary" onclick="orderViaWhatsApp()"><i class="fas fa-comments"></i> Commander via WhatsApp</button>
                 </div>
             </div>
         </div>
@@ -1050,7 +1052,7 @@
             <p class="video-subtitle">Voir notre écailleuse premium en action</p>
             <div class="video-wrapper">
                 <video controls style="width: 100%; height: 100%; object-fit: contain;">
-                    <source src="/mnt/user-data/uploads/p.mp4" type="video/mp4">
+                    <source src="p.mp4" type="video/mp4">
                     Votre navigateur ne supporte pas la lecture vidéo.
                 </video>
             </div>
@@ -1061,22 +1063,22 @@
     <div class="features-section">
         <div class="features-container">
             <div class="feature-item">
-                <div class="feature-icon">◆</div>
+                <div class="feature-icon"><i class="fas fa-gem"></i></div>
                 <div class="feature-title">Premium Quality</div>
                 <div class="feature-text">Matériaux durables et lames acérées pour une performance optimale</div>
             </div>
             <div class="feature-item">
-                <div class="feature-icon">[gear]</div>
+                <div class="feature-icon"><i class="fas fa-cog"></i></div>
                 <div class="feature-title">Ergonomique</div>
                 <div class="feature-text">Design confortable pour une utilisation prolongée sans fatigue</div>
             </div>
             <div class="feature-item">
-                <div class="feature-icon">→</div>
+                <div class="feature-icon"><i class="fas fa-truck"></i></div>
                 <div class="feature-title">Livraison Rapide</div>
                 <div class="feature-text">Livraison gratuite dans tout le Sénégal sous 2-3 jours</div>
             </div>
             <div class="feature-item">
-                <div class="feature-icon">✓</div>
+                <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                 <div class="feature-title">Garantie 30 Jours</div>
                 <div class="feature-text">Satisfait ou remboursé - Aucune question posée</div>
             </div>
@@ -1096,9 +1098,9 @@
             <div class="cart-total">
                 Total: <span id="cart-total">0 FCFA</span>
             </div>
-            <button class="btn-checkout" onclick="checkoutCart()">Commander via WhatsApp</button>
-            <button class="btn-wave" onclick="paymentViaWave()">Payer avec Wave</button>
-            <button class="btn-orange" onclick="paymentViaOrangeMoney()">Payer avec Orange Money</button>
+            <button class="btn-checkout" onclick="checkoutCart()"><i class="fas fa-comments"></i> Commander via WhatsApp</button>
+            <button class="btn-wave" onclick="paymentViaWave()"><i class="fas fa-credit-card"></i> Payer avec Wave</button>
+            <button class="btn-orange" onclick="paymentViaOrangeMoney()"><i class="fas fa-phone"></i> Payer avec Orange Money</button>
         </div>
     </div>
 
@@ -1266,7 +1268,7 @@
                     <div class="cart-item-details">
                         <div class="cart-item-name">${item.name}</div>
                         <div style="font-size: 12px; color: var(--text-gray);">${item.color} × ${item.quantity}</div>
-                        <div style="font-size: 11px; color: #666; margin-top: 4px;">[location] ${item.address}</div>
+                        <div style="font-size: 11px; color: #666; margin-top: 4px;"><i class="fas fa-map-marker-alt"></i> ${item.address}</div>
                         <div class="cart-item-price">${(item.price * item.quantity).toLocaleString('fr-SN')} FCFA</div>
                     </div>
                     <button class="cart-item-remove" onclick="removeFromCart(${idx})">✕</button>
@@ -1335,6 +1337,13 @@
 
             if (cartItems.length === 0) return;
 
+            // Demander le numéro de téléphone utilisé pour Wave
+            const phoneNumber = prompt("Entrez le numéro de téléphone utilisé pour le paiement Wave (ex: 77XXXXXXXX):");
+            if (!phoneNumber || phoneNumber.trim() === "") {
+                showToast("Numéro de téléphone requis");
+                return;
+            }
+
             let total = 0;
             const items = cartItems.map(item => {
                 const itemTotal = (item.price * item.quantity) + zones[item.zone].fee;
@@ -1346,11 +1355,11 @@
             const wavePaymentUrl = `https://pay.wave.com/m/M_sn_30oc-Y5fg1Sp/c/sn/`;
             window.open(wavePaymentUrl, '_blank');
             
-            // Send order details via WhatsApp
-            const message = `Bonjour! Je souhaite payer par Wave pour ma commande:\n\n${items}\n\nTotal: ${total.toLocaleString('fr-SN')} FCFA\nZone: ${cartItems[0].zone}\nAdresse: ${address}\n\nLien Wave: https://pay.wave.com/m/M_sn_30oc-Y5fg1Sp/c/sn/`;
+            // Send order details with phone number via WhatsApp
+            const message = `=== PAIEMENT WAVE ===\n\nBonjour! Je souhaite confirmer mon paiement Wave:\n\nCommande:\n${items}\n\nTotal: ${total.toLocaleString('fr-SN')} FCFA\nZone: ${cartItems[0].zone}\nAdresse: ${address}\nNumero utilise: ${phoneNumber}\n\nMerci de valider mon paiement\nCapture d'ecran jointe ci-dessous`;
             window.open(`https://wa.me/221774976364?text=${encodeURIComponent(message)}`);
             
-            showToast("Lien Wave ouvert! Complétez le paiement et confirmez via WhatsApp");
+            showToast("Envoyez votre capture d'ecran Wave via WhatsApp!");
         }
 
         function paymentViaOrangeMoney() {
@@ -1362,22 +1371,25 @@
 
             if (cartItems.length === 0) return;
 
+            // Demander le numéro de téléphone utilisé pour Orange Money
+            const phoneNumber = prompt("Entrez le numéro de téléphone utilisé pour le paiement Orange Money (ex: 77XXXXXXXX):");
+            if (!phoneNumber || phoneNumber.trim() === "") {
+                showToast("Numéro de téléphone requis");
+                return;
+            }
+
             let total = 0;
             const items = cartItems.map(item => {
                 const itemTotal = (item.price * item.quantity) + zones[item.zone].fee;
                 total += itemTotal;
                 return `${item.name} (${item.color}) × ${item.quantity}`;
             }).join("\n");
-
-            // Orange Money Payment Link - Replace with your merchant details
-            const orangeMoneyUrl = `https://money.orange.sn/`;
-            window.open(orangeMoneyUrl, '_blank');
             
-            // Send order details via WhatsApp
-            const message = `Bonjour! Je souhaite payer par Orange Money pour ma commande:\n\n${items}\n\nTotal: ${total.toLocaleString('fr-SN')} FCFA\nZone: ${cartItems[0].zone}\nAdresse: ${address}\n\nVersez au numéro Orange Money: 77 497 63 64`;
+            // Send order details with phone number via WhatsApp
+            const message = `=== PAIEMENT ORANGE MONEY ===\n\nBonjour! Je souhaite confirmer mon paiement Orange Money:\n\nCommande:\n${items}\n\nTotal: ${total.toLocaleString('fr-SN')} FCFA\nZone: ${cartItems[0].zone}\nAdresse: ${address}\nNumero utilise: ${phoneNumber}\n\nMerci de valider mon paiement\nCapture d'ecran jointe ci-dessous`;
             window.open(`https://wa.me/221774976364?text=${encodeURIComponent(message)}`);
             
-            showToast("Plateforme Orange Money ouverte! Complétez le paiement et confirmez via WhatsApp");
+            showToast("Envoyez votre capture d'ecran Orange Money via WhatsApp!");
         }
 
         
