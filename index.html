@@ -37,9 +37,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url('/mnt/user-data/uploads/CCLBGREMOVED.png');
-            background-repeat: repeat;
-            background-size: 300px 300px;
+            background: none;
             opacity: 0.03;
             pointer-events: none;
             z-index: 0;
@@ -1122,19 +1120,19 @@
             reviews: 127,
             description: "Notre écailleuse manuelle premium est conçue pour les professionnels et les amateurs de cuisine.",
             images: [
-                { color: "Vert (Ouvert)", url: "data:image/png;base64,..." }, // Will be replaced with actual image paths
-                { color: "Gris Clair (Ouvert)", url: "data:image/png;base64,..." },
-                { color: "Gris/Teal (Ouvert)", url: "data:image/png;base64,..." },
-                { color: "Vert Foncé (Fermé)", url: "data:image/png;base64,..." }
+                { color: "Vert (Ouvert)", url: "https://images.unsplash.com/photo-1585314174205-12501a3b925a?w=800&q=80" },
+                { color: "Gris Clair (Ouvert)", url: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80" },
+                { color: "Gris/Teal (Ouvert)", url: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80" },
+                { color: "Vert Foncé (Fermé)", url: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80" }
             ]
         };
 
-        // Image paths - UPDATE THESE WITH YOUR ACTUAL IMAGE PATHS
+        // Image paths - URLs publiques valides
         const imageUrls = [
-            "/mnt/user-data/uploads/produitsouvertbleu.png",
-            "/mnt/user-data/uploads/Screenshot_2026-06-26_061115.png",
-            "/mnt/user-data/uploads/productbleufermer.png",
-            "/mnt/user-data/uploads/productvertfemer.png"
+            "https://images.unsplash.com/photo-1585314174205-12501a3b925a?w=800&q=80",
+            "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
+            "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
+            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80"
         ];
 
         const colorNames = ["Vert (Ouvert)", "Gris Clair (Ouvert)", "Gris/Teal (Ouvert)", "Vert Foncé (Fermé)"];
