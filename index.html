@@ -12,14 +12,14 @@
         }
 
         :root {
-            --primary-blue: #1a3a4d;
-            --light-blue: #f5f7fa;
-            --accent-orange: #e07856;
+            --primary-blue: #2d7d3a;
+            --light-blue: #f0f8f3;
+            --accent-orange: #c9a961;
             --dark-gray: #0f1419;
             --light-gray: #fafbfc;
             --border-gray: transparent;
             --text-gray: #475569;
-            --success-green: #4a9d6f;
+            --success-green: #2d7d3a;
         }
 
         body {
@@ -27,6 +27,22 @@
             color: var(--dark-gray);
             background: #ffffff;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/mnt/user-data/uploads/CCLBGREMOVED.png');
+            background-repeat: repeat;
+            background-size: 300px 300px;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 0;
         }
 
         /* Barre promotionnelle défilante */
@@ -61,7 +77,7 @@
             top: 0;
             background: white;
             border-bottom: 1px solid var(--border-gray);
-            z-index: 100;
+            z-index: 101;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
@@ -72,6 +88,27 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
+        }
+
+        .back-home-btn {
+            background: var(--accent-orange);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .back-home-btn:hover {
+            background: #ff5a22;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(224, 120, 86, 0.25);
         }
 
         .logo {
@@ -142,6 +179,8 @@
             background: linear-gradient(135deg, var(--light-gray) 0%, #f8f9fc 100%);
             padding: 60px 20px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-content {
@@ -170,6 +209,8 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 80px 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .product-layout {
@@ -188,7 +229,7 @@
 
         .main-image-wrapper {
             background: #f5f7fa;
-            border-radius: 12px;
+            border-radius: 0;
             overflow: hidden;
             aspect-ratio: 1;
             display: flex;
@@ -217,7 +258,7 @@
 
         .thumbnail {
             background: #f5f7fa;
-            border-radius: 8px;
+            border-radius: 0;
             cursor: pointer;
             border: 3px solid transparent;
             overflow: hidden;
@@ -314,7 +355,7 @@
         .color-option {
             padding: 12px;
             border: 2px solid #e5e7eb;
-            border-radius: 8px;
+            border-radius: 0;
             cursor: pointer;
             text-align: center;
             font-size: 13px;
@@ -350,7 +391,7 @@
         .zone-option {
             padding: 16px;
             border: 2px solid #e5e7eb;
-            border-radius: 8px;
+            border-radius: 0;
             cursor: pointer;
             transition: all 0.3s ease;
             background: white;
@@ -395,7 +436,7 @@
             width: 100%;
             padding: 12px;
             border: 1px solid #e5e7eb;
-            border-radius: 8px;
+            border-radius: 0;
             font-size: 14px;
             font-family: inherit;
             transition: all 0.3s ease;
@@ -426,7 +467,7 @@
             height: 40px;
             border: 1px solid #e5e7eb;
             background: white;
-            border-radius: 6px;
+            border-radius: 0;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -456,7 +497,7 @@
             background: var(--accent-orange);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 0;
             font-weight: 600;
             font-size: 15px;
             cursor: pointer;
@@ -476,7 +517,7 @@
             background: white;
             color: var(--primary-blue);
             border: 2px solid var(--primary-blue);
-            border-radius: 8px;
+            border-radius: 0;
             font-weight: 600;
             font-size: 15px;
             cursor: pointer;
@@ -492,6 +533,8 @@
             background: #f5f7fa;
             padding: 60px 20px;
             margin-top: 80px;
+            position: relative;
+            z-index: 1;
         }
 
         .features-container {
@@ -522,81 +565,6 @@
             color: var(--text-gray);
             font-size: 14px;
             line-height: 1.6;
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            max-width: 1400px;
-            margin: 80px auto 0;
-            padding: 0 20px 80px;
-        }
-
-        .section-title {
-            font-size: 40px;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 48px;
-            text-align: center;
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-
-        .faq-item {
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .faq-header {
-            padding: 20px;
-            background: #f5f7fa;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--primary-blue);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .faq-header:hover {
-            background: #e8ecf1;
-        }
-
-        .faq-item.active .faq-header {
-            background: var(--accent-orange);
-            color: white;
-        }
-
-        .faq-icon {
-            font-size: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
-        .faq-content {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item.active .faq-content {
-            padding: 20px;
-            max-height: 500px;
-        }
-
-        .faq-text {
-            color: var(--text-gray);
-            line-height: 1.8;
-            font-size: 14px;
         }
 
         /* Cart Drawer */
@@ -660,7 +628,7 @@
             width: 80px;
             height: 80px;
             background: #f5f7fa;
-            border-radius: 8px;
+            border-radius: 0;
             overflow: hidden;
             flex-shrink: 0;
         }
@@ -717,7 +685,7 @@
             background: var(--success-green);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 0;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -734,7 +702,7 @@
             background: #3560d9;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 0;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -750,7 +718,7 @@
             background: #ff9800;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 0;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -780,7 +748,7 @@
 
         .modal-content {
             background: white;
-            border-radius: 12px;
+            border-radius: 0;
             max-width: 500px;
             padding: 40px;
             position: relative;
@@ -806,13 +774,125 @@
             background: var(--success-green);
             color: white;
             padding: 16px 24px;
-            border-radius: 8px;
+            border-radius: 0;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             display: flex;
             align-items: center;
             gap: 12px;
             animation: slideInRight 0.3s ease;
             z-index: 2000;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Dynamic Animations */
+        @keyframes slideUp {
+            from {
+                transform: translateY(60px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-60px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .gallery-container {
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .product-info {
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .hero {
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        .feature-item {
+            animation: slideUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .feature-item:nth-child(1) { animation-delay: 0.1s; }
+        .feature-item:nth-child(2) { animation-delay: 0.2s; }
+        .feature-item:nth-child(3) { animation-delay: 0.3s; }
+        .feature-item:nth-child(4) { animation-delay: 0.4s; }
+
+        /* Video Demo Section */
+        .video-section {
+            max-width: 1400px;
+            margin: 80px auto 0;
+            padding: 80px 20px;
+            background: #f5f7fa;
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .video-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .video-subtitle {
+            font-size: 16px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         @keyframes slideInRight {
@@ -872,15 +952,16 @@
     <!-- Barre Promotionnelle -->
     <div class="promo-bar">
         <div class="promo-content">
-            <div class="promo-item">✨ Livraison gratuite pour les commandes supérieures à 15,000 FCFA</div>
-            <div class="promo-item">🎁 Écaille vos poissons comme un pro avec notre écailleuse premium</div>
-            <div class="promo-item">⭐ Satisfait ou remboursé - Garantie 30 jours</div>
+            <div class="promo-item">★ Livraison gratuite pour les commandes supérieures à 15,000 FCFA</div>
+            <div class="promo-item">◆ Écaille vos poissons comme un pro avec notre écailleuse premium</div>
+            <div class="promo-item">✓ Satisfait ou remboursé - Garantie 30 jours</div>
         </div>
     </div>
 
     <!-- Header -->
     <header>
         <div class="header-content">
+            <a href="index.html" class="back-home-btn">← Back Home</a>
             <a href="#" class="logo">Crystal Shop</a>
             <nav>
                 <a href="#features">Caractéristiques</a>
@@ -888,7 +969,7 @@
                 <a href="#contact">Contact</a>
             </nav>
             <div class="header-icons">
-                <button class="icon-btn" onclick="openCart()">🛒<span class="cart-count" id="cart-count">0</span></button>
+                <button class="icon-btn" onclick="openCart()">[Cart]<span class="cart-count" id="cart-count">0</span></button>
             </div>
         </div>
     </header>
@@ -942,7 +1023,7 @@
                 <div class="address-section">
                     <label class="section-label">Adresse de livraison:</label>
                     <input type="text" id="delivery-address" class="address-input" placeholder="Ex: Mermoz, Dakar - Apt 5, Rue XYZ" required>
-                    <small style="color: var(--text-gray); display: block; margin-top: 8px;">Précisez votre localisation exacte pour faciliter la livraison</small>
+                    <small style="color: var(--text-gray); display: block; margin-top: 8px;">[location] Précisez votre localisation exacte pour faciliter la livraison</small>
                 </div>
 
                 <!-- Quantity -->
@@ -964,36 +1045,44 @@
         </div>
     </div>
 
-    <!-- Features Section -->
-    <div class="features-section">
-        <div class="features-container">
-            <div class="feature-item">
-                <div class="feature-icon">✨</div>
-                <div class="feature-title">Premium Quality</div>
-                <div class="feature-text">Matériaux durables et lames acérées pour une performance optimale</div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">⚡</div>
-                <div class="feature-title">Ergonomique</div>
-                <div class="feature-text">Design confortable pour une utilisation prolongée sans fatigue</div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">🚚</div>
-                <div class="feature-title">Livraison Rapide</div>
-                <div class="feature-text">Livraison gratuite dans tout le Sénégal sous 2-3 jours</div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">🛡️</div>
-                <div class="feature-title">Garantie 30 Jours</div>
-                <div class="feature-text">Satisfait ou remboursé - Aucune question posée</div>
+    <!-- Video Demo Section -->
+    <div class="video-section">
+        <div class="video-container">
+            <h2 class="video-title">Vidéo de Démonstration</h2>
+            <p class="video-subtitle">Voir notre écailleuse premium en action</p>
+            <div class="video-wrapper">
+                <video controls style="width: 100%; height: 100%; object-fit: contain;">
+                    <source src="/mnt/user-data/uploads/p.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture vidéo.
+                </video>
             </div>
         </div>
     </div>
 
-    <!-- FAQ Section -->
-    <div class="faq-section" id="faq">
-        <h2 class="section-title">Questions Fréquemment Posées</h2>
-        <div class="faq-grid" id="faq-grid"></div>
+    <!-- Features Section -->
+    <div class="features-section">
+        <div class="features-container">
+            <div class="feature-item">
+                <div class="feature-icon">◆</div>
+                <div class="feature-title">Premium Quality</div>
+                <div class="feature-text">Matériaux durables et lames acérées pour une performance optimale</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">[gear]</div>
+                <div class="feature-title">Ergonomique</div>
+                <div class="feature-text">Design confortable pour une utilisation prolongée sans fatigue</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">→</div>
+                <div class="feature-title">Livraison Rapide</div>
+                <div class="feature-text">Livraison gratuite dans tout le Sénégal sous 2-3 jours</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">✓</div>
+                <div class="feature-title">Garantie 30 Jours</div>
+                <div class="feature-text">Satisfait ou remboursé - Aucune question posée</div>
+            </div>
+        </div>
     </div>
 
     <!-- Cart Drawer -->
@@ -1063,40 +1152,11 @@
         let selectedColor = "Vert (Ouvert)";
         let currentZone = "Dakar Centre";
 
-        // FAQ Data
-        const faqData = [
-            {
-                question: "Quel est le délai de livraison?",
-                answer: "Les délais varient selon votre zone: Dakar Centre (1-2 jours), Dakar Banlieue (2-3 jours), Autres villes (3-4 jours)."
-            },
-            {
-                question: "Puis-je payer à la livraison?",
-                answer: "Oui, vous pouvez payer à la livraison. Nous acceptons également Wave et Orange Money."
-            },
-            {
-                question: "Avez-vous une garantie?",
-                answer: "Oui! Nous offrons une garantie de satisfaction de 30 jours. Si vous n'êtes pas satisfait, nous vous remboursons intégralement."
-            },
-            {
-                question: "Comment commander?",
-                answer: "Vous pouvez commander directement via WhatsApp, ou ajouter au panier et procéder au paiement en ligne via Wave ou Orange Money."
-            },
-            {
-                question: "Convient-il à tous les types de poissons?",
-                answer: "Oui, notre écailleuse premium est conçue pour fonctionner avec tous les types de poissons, des petits aux gros."
-            },
-            {
-                question: "Comment entretenir mon écailleuse?",
-                answer: "Lavez-la simplement à l'eau chaude après chaque utilisation et séchez-la bien. Vous pouvez aussi la passer au lave-vaisselle."
-            }
-        ];
-
         // Initialize
         document.addEventListener("DOMContentLoaded", () => {
             initializeGallery();
             initializeColorOptions();
             initializeZoneOptions();
-            initializeFAQ();
             updateCartUI();
         });
 
@@ -1208,7 +1268,7 @@
                     <div class="cart-item-details">
                         <div class="cart-item-name">${item.name}</div>
                         <div style="font-size: 12px; color: var(--text-gray);">${item.color} × ${item.quantity}</div>
-                        <div style="font-size: 11px; color: #666; margin-top: 4px;">📍 ${item.address}</div>
+                        <div style="font-size: 11px; color: #666; margin-top: 4px;">[location] ${item.address}</div>
                         <div class="cart-item-price">${(item.price * item.quantity).toLocaleString('fr-SN')} FCFA</div>
                     </div>
                     <button class="cart-item-remove" onclick="removeFromCart(${idx})">✕</button>
@@ -1284,12 +1344,12 @@
                 return `${item.name} (${item.color}) × ${item.quantity}`;
             }).join("\n");
 
-            // Wave Payment Link - Replace MERCHANT_ID and AMOUNT with your credentials
-            const wavePaymentUrl = `https://app.wave.money/en/send?receiver=221774976364&amount=${total}&description=Commande Crystal Shop`;
+            // Real Wave Payment Link for Crystal Company
+            const wavePaymentUrl = `https://pay.wave.com/m/M_sn_30oc-Y5fg1Sp/c/sn/`;
             window.open(wavePaymentUrl, '_blank');
             
             // Send order details via WhatsApp
-            const message = `Bonjour! Je souhaite payer par Wave pour ma commande:\n\n${items}\n\nTotal: ${total.toLocaleString('fr-SN')} FCFA\nZone: ${cartItems[0].zone}\nAdresse: ${address}\n\nVersez au numéro Wave: 77 497 63 64`;
+            const message = `Bonjour! Je souhaite payer par Wave pour ma commande:\n\n${items}\n\nTotal: ${total.toLocaleString('fr-SN')} FCFA\nZone: ${cartItems[0].zone}\nAdresse: ${address}\n\nLien Wave: https://pay.wave.com/m/M_sn_30oc-Y5fg1Sp/c/sn/`;
             window.open(`https://wa.me/221774976364?text=${encodeURIComponent(message)}`);
             
             showToast("Lien Wave ouvert! Complétez le paiement et confirmez via WhatsApp");
@@ -1322,26 +1382,7 @@
             showToast("Plateforme Orange Money ouverte! Complétez le paiement et confirmez via WhatsApp");
         }
 
-        // FAQ
-        function initializeFAQ() {
-            const faqGrid = document.getElementById("faq-grid");
-            faqGrid.innerHTML = faqData.map((item, idx) => `
-                <div class="faq-item">
-                    <div class="faq-header" onclick="toggleFaq(this)">
-                        <span>${item.question}</span>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-content">
-                        <div class="faq-text">${item.answer}</div>
-                    </div>
-                </div>
-            `).join("");
-        }
-
-        function toggleFaq(element) {
-            element.closest(".faq-item").classList.toggle("active");
-        }
-
+        
         // Toast
         function showToast(message) {
             const toast = document.createElement("div");
